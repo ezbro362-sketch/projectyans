@@ -1,0 +1,1998 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yans — Créateur de sites web freelance | Sites modernes, rapides et professionnels</title>
+<meta name="description" content="Yans, créateur de sites web freelance. Sites vitrines, landing pages et sites d'entreprise modernes, rapides et responsives. Offres dès 24,99 €.">
+<meta name="theme-color" content="#0A0A0B">
+<meta property="og:title" content="Yans — Créateur de sites web freelance">
+<meta property="og:description" content="Votre présence en ligne mérite mieux. Sites web modernes, rapides et professionnels.">
+<meta property="og:type" content="website">
+
+<!-- ============================ FAVICON (initiales "YA") ============================ -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230A0A0B'/%3E%3Crect x='1.5' y='1.5' width='61' height='61' rx='12.5' fill='none' stroke='%23D6B36A' stroke-width='3'/%3E%3Ctext x='32' y='43' font-family='Georgia,serif' font-size='28' font-weight='700' fill='%23D6B36A' text-anchor='middle'%3EYA%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link href="https://cdn.jsdelivr.net/npm/@fontsource-variable/space-grotesk/index.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@fontsource-variable/inter/index.css" rel="stylesheet">
+
+<style>
+/* =======================================================================
+   1. TOKENS DE DESIGN
+   ======================================================================= */
+:root{
+  --bg:#0A0A0B;
+  --bg-alt:#0E0F12;
+  --surface:#141519;
+  --surface-2:#1A1C21;
+  --anthracite:#2A2D34;
+  --line:rgba(255,255,255,.085);
+  --line-strong:rgba(255,255,255,.16);
+  --text:#F5F5F7;
+  --muted:#9BA0AA;
+  --muted-2:#6E737D;
+
+  --accent:#D6B36A;
+  --accent-strong:#B99245;
+  --accent-soft:rgba(214,179,106,.12);
+  --accent-line:rgba(214,179,106,.32);
+
+  --radius:18px;
+  --radius-sm:12px;
+  --radius-lg:26px;
+  --shadow:0 24px 60px -24px rgba(0,0,0,.85);
+  --shadow-accent:0 18px 44px -18px rgba(214,179,106,.45);
+
+  --font-display:'Space Grotesk Variable','Space Grotesk',system-ui,sans-serif;
+  --font-body:'Inter Variable','Inter',system-ui,-apple-system,sans-serif;
+
+  --nav-h:74px;
+  --container:1200px;
+  --ease:cubic-bezier(.22,.68,.36,1);
+}
+
+/* =======================================================================
+   2. RESET & BASE
+   ======================================================================= */
+*,*::before,*::after{box-sizing:border-box}
+*{margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--font-body);background:var(--bg);color:var(--text);
+  line-height:1.65;font-size:16.5px;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+body.is-locked{overflow:hidden}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit;color:inherit}
+button{background:none;border:none;cursor:pointer}
+ul{list-style:none}
+h1,h2,h3,h4{font-family:var(--font-display);line-height:1.1;letter-spacing:-.025em;font-weight:700}
+::selection{background:var(--accent);color:#0A0A0B}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+
+.container{width:100%;max-width:var(--container);margin-inline:auto;padding-inline:24px}
+.section{padding:112px 0;position:relative;scroll-margin-top:var(--nav-h)}
+.section--alt{background:var(--bg-alt)}
+.section--bordered{border-top:1px solid var(--line)}
+
+.skip-link{
+  position:fixed;top:-100px;left:16px;z-index:2000;background:var(--accent);color:#0A0A0B;
+  padding:12px 20px;border-radius:10px;font-weight:600;transition:top .25s var(--ease);
+}
+.skip-link:focus{top:16px}
+
+/* =======================================================================
+   3. COMPOSANTS RÉUTILISABLES
+   ======================================================================= */
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;font-size:12.5px;letter-spacing:.22em;
+  text-transform:uppercase;font-weight:600;color:var(--accent);margin-bottom:20px;
+}
+.eyebrow::before{content:"";width:32px;height:1px;background:var(--accent-line)}
+.section-head{max-width:720px;margin-bottom:60px}
+.section-head--center{margin-inline:auto;text-align:center}
+.section-head--center .eyebrow{justify-content:center}
+.section-head--center .eyebrow::after{content:"";width:32px;height:1px;background:var(--accent-line)}
+.section-title{font-size:clamp(2rem,4.6vw,3.2rem);margin-bottom:18px}
+.section-title .hl{color:var(--accent)}
+.section-sub{color:var(--muted);font-size:1.06rem;max-width:620px}
+.section-head--center .section-sub{margin-inline:auto}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:15px 30px;border-radius:999px;font-weight:600;font-size:15px;letter-spacing:.01em;
+  transition:transform .3s var(--ease),background .3s,color .3s,border-color .3s,box-shadow .3s;
+  border:1px solid transparent;white-space:nowrap;position:relative;overflow:hidden;
+}
+.btn svg{width:17px;height:17px;flex-shrink:0;transition:transform .3s var(--ease)}
+.btn--primary{background:var(--accent);color:#0A0A0B;box-shadow:var(--shadow-accent)}
+.btn--primary:hover{background:#E4C481;transform:translateY(-3px);box-shadow:0 22px 50px -16px rgba(214,179,106,.6)}
+.btn--primary:hover svg{transform:translateX(4px)}
+.btn--ghost{border-color:var(--line-strong);color:var(--text);background:rgba(255,255,255,.02)}
+.btn--ghost:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-3px);background:var(--accent-soft)}
+.btn--block{width:100%}
+.btn--sm{padding:11px 22px;font-size:14px}
+.btn[aria-disabled="true"]{opacity:.45;cursor:not-allowed;transform:none!important;box-shadow:none}
+
+.card{
+  background:linear-gradient(180deg,var(--surface) 0%,#101115 100%);
+  border:1px solid var(--line);border-radius:var(--radius);
+  transition:transform .45s var(--ease),border-color .45s,box-shadow .45s,background .45s;
+}
+.card:hover{transform:translateY(-6px);border-color:var(--accent-line);box-shadow:var(--shadow)}
+
+.tag{
+  display:inline-block;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;
+  padding:6px 13px;border-radius:999px;background:var(--accent-soft);color:var(--accent);border:1px solid var(--accent-line);
+}
+.note{font-size:.86rem;color:var(--muted-2);line-height:1.6}
+
+/* =======================================================================
+   4. PROGRESSION + NAVIGATION
+   ======================================================================= */
+.progress{
+  position:fixed;top:0;left:0;height:2px;width:100%;transform-origin:0 50%;transform:scaleX(0);
+  background:linear-gradient(90deg,var(--accent-strong),var(--accent));z-index:1200;
+}
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;height:var(--nav-h);display:flex;align-items:center;
+  background:rgba(10,10,11,.6);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border-bottom:1px solid transparent;transition:background .35s,border-color .35s,height .35s;
+}
+.nav.is-scrolled{background:rgba(10,10,11,.92);border-bottom-color:var(--line);height:64px}
+.nav__inner{display:flex;align-items:center;justify-content:space-between;gap:20px;width:100%}
+.brand{display:flex;align-items:center;gap:12px;font-family:var(--font-display);font-weight:700;font-size:17px;letter-spacing:-.02em}
+.brand__mark{
+  width:38px;height:38px;border-radius:11px;flex-shrink:0;background:linear-gradient(145deg,#1C1E24,#0C0D10);
+  border:1px solid var(--accent-line);display:grid;place-items:center;color:var(--accent);
+  font-size:13.5px;letter-spacing:.04em;transition:transform .4s var(--ease),box-shadow .4s;
+}
+.brand:hover .brand__mark{transform:rotate(-8deg) scale(1.06);box-shadow:0 0 24px -6px rgba(214,179,106,.55)}
+.brand small{display:block;font-family:var(--font-body);font-size:11px;font-weight:500;color:var(--muted-2);letter-spacing:.1em;text-transform:uppercase;line-height:1.2}
+.nav__links{display:flex;align-items:center;gap:4px}
+.nav__link{padding:9px 15px;border-radius:9px;font-size:14.5px;font-weight:500;color:var(--muted);transition:color .25s,background .25s;position:relative}
+.nav__link:hover{color:var(--text);background:rgba(255,255,255,.05)}
+.nav__link.is-active{color:var(--accent)}
+.nav__link.is-active::after{content:"";position:absolute;left:15px;right:15px;bottom:3px;height:1.5px;background:var(--accent);border-radius:2px}
+.nav__cta{display:flex;align-items:center;gap:12px}
+.burger{display:none;width:44px;height:44px;border-radius:11px;border:1px solid var(--line);background:rgba(255,255,255,.03);place-items:center}
+.burger span{display:block;width:19px;height:1.8px;background:var(--text);border-radius:2px;transition:transform .35s var(--ease),opacity .25s}
+.burger span+span{margin-top:5px}
+.burger.is-open span:nth-child(1){transform:translateY(6.8px) rotate(45deg)}
+.burger.is-open span:nth-child(2){opacity:0}
+.burger.is-open span:nth-child(3){transform:translateY(-6.8px) rotate(-45deg)}
+.mobile-menu{
+  position:fixed;inset:0;z-index:999;background:rgba(8,8,9,.985);backdrop-filter:blur(20px);
+  display:flex;flex-direction:column;justify-content:center;padding:100px 30px 40px;
+  opacity:0;visibility:hidden;transform:translateY(-14px);
+  transition:opacity .4s var(--ease),transform .4s var(--ease),visibility .4s;
+}
+.mobile-menu.is-open{opacity:1;visibility:visible;transform:none}
+.mobile-menu a.m-link{
+  font-family:var(--font-display);font-size:clamp(1.7rem,8vw,2.4rem);font-weight:700;padding:13px 0;
+  border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;
+  opacity:0;transform:translateY(16px);transition:opacity .5s var(--ease),transform .5s var(--ease),color .3s;
+}
+.mobile-menu a.m-link:hover{color:var(--accent)}
+.mobile-menu a.m-link span{font-family:var(--font-body);font-size:12px;color:var(--muted-2);font-weight:500}
+.mobile-menu.is-open a.m-link{opacity:1;transform:none}
+.mobile-menu .m-foot{margin-top:34px;display:grid;gap:12px}
+
+/* =======================================================================
+   5. HERO
+   ======================================================================= */
+.hero{position:relative;padding:calc(var(--nav-h) + 78px) 0 96px;overflow:hidden;border-bottom:1px solid var(--line)}
+.hero__bg{position:absolute;inset:0;pointer-events:none;z-index:0}
+.hero__glow{
+  position:absolute;width:820px;height:820px;border-radius:50%;
+  background:radial-gradient(circle,rgba(214,179,106,.16) 0%,rgba(214,179,106,.05) 42%,transparent 70%);
+  top:-320px;right:-220px;filter:blur(10px);animation:floatGlow 16s ease-in-out infinite;
+}
+.hero__glow--2{
+  width:640px;height:640px;top:auto;bottom:-380px;left:-260px;right:auto;
+  background:radial-gradient(circle,rgba(120,140,255,.09) 0%,transparent 68%);animation-duration:20s;animation-direction:reverse;
+}
+@keyframes floatGlow{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-40px,36px) scale(1.09)}}
+.hero__grid{
+  position:absolute;inset:0;opacity:.4;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:76px 76px;
+  mask-image:radial-gradient(ellipse 78% 62% at 50% 34%,#000 20%,transparent 100%);
+  -webkit-mask-image:radial-gradient(ellipse 78% 62% at 50% 34%,#000 20%,transparent 100%);
+}
+.hero__inner{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center}
+.hero h1{font-size:clamp(2.5rem,5.9vw,4.4rem);letter-spacing:-.038em;margin:22px 0 24px}
+.hero h1 .hl{background:linear-gradient(100deg,var(--accent) 10%,#F0DCAE 50%,var(--accent-strong) 90%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero__lead{color:var(--muted);font-size:clamp(1rem,1.5vw,1.14rem);max-width:540px;margin-bottom:38px}
+.hero__actions{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:52px}
+
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.stat{background:var(--bg);padding:24px 18px;transition:background .4s}
+.stat:hover{background:var(--surface)}
+.stat__num{font-family:var(--font-display);font-size:clamp(1.85rem,3.6vw,2.5rem);font-weight:700;line-height:1;color:var(--accent);letter-spacing:-.03em}
+.stat__num sup{font-size:.5em;vertical-align:super;margin-left:1px}
+.stat__label{font-size:.83rem;color:var(--muted);margin-top:9px;line-height:1.45}
+
+.hero__visual{position:relative}
+.hero__art{
+  position:relative;border:1px solid var(--line-strong);border-radius:var(--radius-lg);overflow:hidden;
+  box-shadow:var(--shadow);background:#0B0C0F;animation:hoverFrame 7s ease-in-out infinite;aspect-ratio:8/5;
+}
+@keyframes hoverFrame{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+.hero__art svg{width:100%;height:100%}
+.hero__chip{
+  position:absolute;z-index:2;background:rgba(20,21,25,.88);backdrop-filter:blur(10px);
+  border:1px solid var(--line-strong);border-radius:13px;padding:12px 16px;box-shadow:var(--shadow);
+  display:flex;align-items:center;gap:11px;
+}
+.hero__chip strong{display:block;font-family:var(--font-display);font-size:1.02rem;color:var(--accent);line-height:1.1}
+.hero__chip span{font-size:.72rem;color:var(--muted-2);letter-spacing:.05em}
+.hero__chip--a{top:26px;right:-16px;animation:hoverFrame 7s ease-in-out infinite .9s}
+.hero__chip--b{bottom:34px;left:-18px;animation:hoverFrame 7s ease-in-out infinite .4s}
+.hero__badge{
+  position:absolute;bottom:-22px;right:14px;background:var(--surface-2);border:1px solid var(--line-strong);
+  border-radius:14px;padding:13px 17px;display:flex;align-items:center;gap:12px;box-shadow:var(--shadow);z-index:3;
+}
+.hero__badge .dot{width:9px;height:9px;border-radius:50%;background:#4ADE80;box-shadow:0 0 0 4px rgba(74,222,128,.16);animation:pulse 2.4s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 4px rgba(74,222,128,.16)}50%{box-shadow:0 0 0 9px rgba(74,222,128,0)}}
+.hero__badge strong{display:block;font-size:.84rem;font-weight:600}
+.hero__badge span{font-size:.72rem;color:var(--muted-2)}
+
+.scroll-hint{
+  position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;
+  align-items:center;gap:9px;color:var(--muted-2);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+}
+.scroll-hint .mouse{width:22px;height:35px;border:1.5px solid var(--line-strong);border-radius:12px;position:relative}
+.scroll-hint .mouse::after{content:"";position:absolute;top:6px;left:50%;transform:translateX(-50%);width:2.5px;height:7px;border-radius:2px;background:var(--accent);animation:wheel 1.9s infinite}
+@keyframes wheel{0%{opacity:0;transform:translate(-50%,0)}35%{opacity:1}100%{opacity:0;transform:translate(-50%,12px)}}
+
+/* =======================================================================
+   6. BANDEAU DÉFILANT
+   ======================================================================= */
+.marquee{border-bottom:1px solid var(--line);background:var(--bg-alt);overflow:hidden;padding:19px 0;position:relative}
+.marquee::before,.marquee::after{content:"";position:absolute;top:0;bottom:0;width:110px;z-index:2;pointer-events:none}
+.marquee::before{left:0;background:linear-gradient(90deg,var(--bg-alt),transparent)}
+.marquee::after{right:0;background:linear-gradient(270deg,var(--bg-alt),transparent)}
+.marquee__track{display:flex;gap:52px;width:max-content;animation:slide 34s linear infinite}
+.marquee:hover .marquee__track{animation-play-state:paused}
+@keyframes slide{to{transform:translateX(-50%)}}
+.marquee__item{display:flex;align-items:center;gap:52px;font-family:var(--font-display);font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted-2);font-weight:500;white-space:nowrap}
+.marquee__item i{width:5px;height:5px;border-radius:50%;background:var(--accent);opacity:.65;flex-shrink:0}
+
+/* =======================================================================
+   7. À PROPOS
+   ======================================================================= */
+.about__grid{display:grid;grid-template-columns:1fr 1.08fr;gap:70px;align-items:center}
+.about__panel{
+  position:relative;border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--line);
+  background:linear-gradient(155deg,#17181D 0%,#0C0D10 60%);padding:38px;min-height:420px;
+  display:flex;flex-direction:column;justify-content:space-between;box-shadow:var(--shadow);
+}
+.about__panel::before{content:"";position:absolute;width:340px;height:340px;border-radius:50%;top:-140px;right:-120px;background:radial-gradient(circle,rgba(214,179,106,.2),transparent 66%)}
+.about__panel::after{
+  content:"";position:absolute;inset:0;opacity:.35;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:34px 34px;
+  mask-image:radial-gradient(ellipse at 30% 80%,#000,transparent 72%);
+  -webkit-mask-image:radial-gradient(ellipse at 30% 80%,#000,transparent 72%);
+}
+.about__panel > *{position:relative;z-index:1}
+.about__mono{font-family:var(--font-display);font-size:clamp(4.4rem,10vw,6.6rem);font-weight:700;line-height:.85;color:var(--accent);letter-spacing:-.05em}
+.about__mono small{display:block;font-family:var(--font-body);font-size:.95rem;font-weight:500;letter-spacing:.06em;color:var(--muted);margin-top:16px;line-height:1.5;max-width:230px}
+.about__chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:26px}
+.chip{font-size:12.5px;padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--muted)}
+.about__text p{color:var(--muted);margin-bottom:34px;font-size:1.03rem}
+.about__list{display:grid;gap:2px}
+.about__item{
+  display:flex;gap:16px;align-items:flex-start;padding:18px 20px;border-radius:var(--radius-sm);
+  background:var(--surface);border:1px solid var(--line);transition:transform .35s var(--ease),border-color .35s,background .35s;
+}
+.about__item:hover{transform:translateX(7px);border-color:var(--accent-line);background:var(--surface-2)}
+.about__item .ic{width:40px;height:40px;border-radius:11px;flex-shrink:0;display:grid;place-items:center;background:var(--accent-soft);border:1px solid var(--accent-line);color:var(--accent)}
+.about__item .ic svg{width:19px;height:19px}
+.about__item h4{font-size:1rem;margin-bottom:3px;letter-spacing:-.01em}
+.about__item p{font-size:.89rem;color:var(--muted-2);margin:0;line-height:1.55}
+
+/* =======================================================================
+   8. PORTFOLIO
+   ======================================================================= */
+.filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:40px}
+.filter{padding:10px 20px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.02);font-size:14px;font-weight:500;color:var(--muted);transition:all .3s var(--ease)}
+.filter:hover{color:var(--text);border-color:var(--line-strong);transform:translateY(-2px)}
+.filter.is-active{background:var(--accent);color:#0A0A0B;border-color:var(--accent);font-weight:600}
+
+.projects{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.project{overflow:hidden;display:flex;flex-direction:column;position:relative}
+.project.is-hidden{display:none}
+.project__media{position:relative;overflow:hidden;background:#0B0C0F;aspect-ratio:16/10;border-bottom:1px solid var(--line)}
+.project__media svg{width:100%;height:100%;transition:transform .8s var(--ease)}
+.project:hover .project__media svg{transform:scale(1.06)}
+.project__media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(10,10,11,.6));opacity:0;transition:opacity .45s}
+.project:hover .project__media::after{opacity:1}
+.demo-flag{
+  position:absolute;top:13px;left:13px;z-index:2;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;
+  font-weight:700;padding:5px 11px;border-radius:7px;background:rgba(10,10,11,.82);border:1px solid var(--accent-line);
+  color:var(--accent);backdrop-filter:blur(8px);
+}
+.project__cat-badge{
+  position:absolute;top:13px;right:13px;z-index:2;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  font-weight:600;padding:5px 11px;border-radius:7px;background:rgba(10,10,11,.72);border:1px solid var(--line);
+  color:var(--muted);backdrop-filter:blur(8px);
+}
+.project__body{padding:26px;display:flex;flex-direction:column;gap:12px;flex:1}
+.project__cat{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:600}
+.project__body h3{font-size:1.22rem;letter-spacing:-.02em}
+.project__body p{font-size:.9rem;color:var(--muted-2);line-height:1.6;flex:1}
+.project__foot{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-top:14px;border-top:1px solid var(--line);margin-top:4px}
+.link-arrow{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--accent);transition:gap .3s var(--ease)}
+.link-arrow:hover{gap:13px}
+.link-arrow svg{width:15px;height:15px}
+.project__stack{display:flex;gap:6px;flex-wrap:wrap}
+.project__stack span{font-size:10.5px;padding:4px 9px;border-radius:6px;background:rgba(255,255,255,.045);color:var(--muted-2);border:1px solid var(--line)}
+
+.disclaimer{
+  margin-top:44px;padding:22px 26px;border-radius:var(--radius-sm);border:1px dashed var(--line-strong);
+  background:rgba(255,255,255,.02);display:flex;gap:15px;align-items:flex-start;
+}
+.disclaimer svg{width:21px;height:21px;color:var(--accent);flex-shrink:0;margin-top:2px}
+.disclaimer p{font-size:.9rem;color:var(--muted);line-height:1.65}
+.disclaimer strong{color:var(--text)}
+
+/* =======================================================================
+   9. TARIFS
+   ======================================================================= */
+.pricing{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;align-items:stretch}
+.plan{padding:34px 28px;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.plan::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--accent-line),transparent);opacity:0;transition:opacity .45s}
+.plan:hover::before{opacity:1}
+.plan--featured{border-color:var(--accent-line);background:linear-gradient(180deg,#1B1A16 0%,#101115 62%)}
+.plan--featured::before{opacity:1;background:linear-gradient(90deg,transparent,var(--accent),transparent)}
+.plan__flag{position:absolute;top:20px;right:-34px;transform:rotate(38deg);background:var(--accent);color:#0A0A0B;font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;padding:5px 40px}
+.plan__name{font-family:var(--font-display);font-size:12.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:16px}
+.plan--featured .plan__name{color:var(--accent)}
+.plan__price{display:flex;align-items:flex-start;gap:4px;margin-bottom:8px;font-family:var(--font-display)}
+.plan__price .cur{font-size:1.5rem;font-weight:600;color:var(--accent);margin-top:8px}
+.plan__price .val{font-size:clamp(2.4rem,4vw,3rem);font-weight:700;letter-spacing:-.045em;line-height:1}
+.plan__price .dec{font-size:1.5rem;font-weight:600;color:var(--accent);margin-top:8px}
+.plan__for{font-size:.875rem;color:var(--muted-2);margin-bottom:26px;min-height:44px;line-height:1.55}
+.plan__rule{height:1px;background:var(--line);margin-bottom:24px}
+.plan__list{display:grid;gap:13px;margin-bottom:32px;flex:1}
+.plan__list li{display:flex;gap:11px;font-size:.9rem;color:var(--muted);line-height:1.5}
+.plan__list li svg{width:16px;height:16px;flex-shrink:0;color:var(--accent);margin-top:3px}
+.pricing__note{text-align:center;margin-top:44px;color:var(--muted);font-size:1rem;max-width:640px;margin-inline:auto}
+.pricing__note strong{color:var(--accent);font-weight:600}
+
+/* =======================================================================
+   10. POURQUOI ME CHOISIR
+   ======================================================================= */
+.why{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.why__card{padding:34px 28px;text-align:left;position:relative;overflow:hidden}
+.why__card::after{content:"";position:absolute;width:190px;height:190px;border-radius:50%;right:-90px;bottom:-100px;background:radial-gradient(circle,var(--accent-soft),transparent 70%);opacity:0;transition:opacity .5s}
+.why__card:hover::after{opacity:1}
+.why__ic{
+  width:56px;height:56px;border-radius:15px;display:grid;place-items:center;margin-bottom:24px;
+  background:linear-gradient(150deg,var(--accent-soft),rgba(255,255,255,.02));border:1px solid var(--accent-line);
+  color:var(--accent);transition:transform .5s var(--ease),box-shadow .5s;position:relative;z-index:1;
+}
+.why__card:hover .why__ic{transform:translateY(-4px) rotate(-6deg);box-shadow:0 14px 30px -12px rgba(214,179,106,.5)}
+.why__ic svg{width:25px;height:25px}
+.why__card h3{font-size:1.1rem;margin-bottom:11px;position:relative;z-index:1}
+.why__card p{font-size:.895rem;color:var(--muted-2);line-height:1.65;position:relative;z-index:1}
+.why__num{position:absolute;top:24px;right:26px;font-family:var(--font-display);font-size:.78rem;font-weight:600;color:var(--muted-2);letter-spacing:.1em;opacity:.55}
+
+/* =======================================================================
+   11. TÉMOIGNAGES
+   ======================================================================= */
+.testi__top{display:grid;grid-template-columns:auto 1fr;gap:52px;align-items:center;margin-bottom:56px}
+.testi__count{text-align:center;padding:36px 44px;border-radius:var(--radius-lg);background:linear-gradient(155deg,#1A1B20,#0D0E11);border:1px solid var(--accent-line);box-shadow:var(--shadow)}
+.testi__count .big{font-family:var(--font-display);font-size:clamp(3.6rem,9vw,5.4rem);font-weight:700;line-height:.9;color:var(--accent);letter-spacing:-.05em}
+.testi__count span{display:block;font-size:.83rem;color:var(--muted);margin-top:12px;letter-spacing:.05em;max-width:150px;line-height:1.5}
+.testi__top p{color:var(--muted);font-size:1.02rem}
+.testi__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.testi__slot{
+  padding:32px 28px;border-radius:var(--radius);border:1px dashed var(--line-strong);background:rgba(255,255,255,.014);
+  min-height:210px;display:flex;flex-direction:column;justify-content:space-between;gap:22px;
+  transition:border-color .4s,background .4s,transform .4s var(--ease);
+}
+.testi__slot:hover{border-color:var(--accent-line);background:rgba(214,179,106,.035);transform:translateY(-4px)}
+.testi__slot .quote{width:34px;height:34px;color:var(--accent);opacity:.45}
+.testi__slot h4{font-size:.98rem;margin-bottom:8px;color:var(--text)}
+.testi__slot p{font-size:.855rem;color:var(--muted-2);line-height:1.6}
+.testi__slot .who{display:flex;align-items:center;gap:12px;padding-top:16px;border-top:1px solid var(--line)}
+.testi__slot .av{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.05);border:1px dashed var(--line-strong);display:grid;place-items:center;color:var(--muted-2);font-size:13px}
+.testi__slot .who div span{display:block;font-size:.78rem;color:var(--muted-2)}
+.testi__slot .who div strong{font-size:.83rem;color:var(--muted);font-weight:500}
+
+/* =======================================================================
+   12. CONTACT
+   ======================================================================= */
+.contact__grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:start}
+.form{display:grid;gap:20px}
+.form__row{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.field{display:grid;gap:9px}
+.field label{font-size:.845rem;font-weight:600;color:var(--muted);letter-spacing:.02em;display:flex;gap:6px;align-items:center}
+.field label .req{color:var(--accent)}
+.field input,.field select,.field textarea{
+  width:100%;padding:15px 17px;border-radius:var(--radius-sm);border:1px solid var(--line);background:var(--surface);
+  font-size:.95rem;transition:border-color .3s,background .3s,box-shadow .3s;font-family:var(--font-body);
+}
+.field textarea{resize:vertical;min-height:145px;line-height:1.6}
+.field select{appearance:none;cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1l6 6 6-6' stroke='%239BA0AA' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 17px center;padding-right:44px}
+.field select option{background:var(--surface-2);color:var(--text)}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--accent);background:var(--surface-2);box-shadow:0 0 0 4px var(--accent-soft)}
+.field input::placeholder,.field textarea::placeholder{color:var(--muted-2);opacity:.7}
+.field .err{font-size:.78rem;color:#F0836A;display:none;align-items:center;gap:6px}
+.field.has-error input,.field.has-error select,.field.has-error textarea{border-color:#F0836A}
+.field.has-error .err{display:flex}
+.form__foot{display:flex;flex-wrap:wrap;align-items:center;gap:18px;justify-content:space-between}
+.form__msg{padding:16px 20px;border-radius:var(--radius-sm);font-size:.9rem;line-height:1.6;display:none;border:1px solid var(--accent-line);background:var(--accent-soft);color:#EBD9AE}
+.form__msg.is-shown{display:block;animation:fadeUp .45s var(--ease)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
+.contact__side{display:grid;gap:18px}
+.cbox{padding:28px;border-radius:var(--radius);border:1px solid var(--line);background:var(--surface);transition:border-color .4s,transform .4s var(--ease)}
+.cbox:hover{border-color:var(--accent-line);transform:translateY(-4px)}
+.cbox .ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:var(--accent-soft);border:1px solid var(--accent-line);color:var(--accent);margin-bottom:18px}
+.cbox .ic svg{width:20px;height:20px}
+.cbox h4{font-size:.95rem;margin-bottom:6px}
+.cbox .val{font-size:.92rem;color:var(--muted);word-break:break-word}
+.cbox .todo{display:inline-flex;align-items:center;gap:7px;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-top:12px;font-weight:600}
+.cbox .todo::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse2 2s infinite}
+@keyframes pulse2{0%,100%{opacity:1}50%{opacity:.28}}
+.cbox--cta{background:linear-gradient(155deg,#1B1A16,#101115);border-color:var(--accent-line);text-align:center;padding:34px 28px}
+.cbox--cta h4{font-size:1.15rem;margin-bottom:10px}
+.cbox--cta p{font-size:.88rem;color:var(--muted);margin-bottom:22px}
+
+/* =======================================================================
+   13. FOOTER
+   ======================================================================= */
+.footer{border-top:1px solid var(--line);background:var(--bg-alt);padding:74px 0 0}
+.footer__grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.2fr;gap:44px;padding-bottom:56px}
+.footer__brand p{color:var(--muted-2);font-size:.9rem;margin-top:18px;max-width:290px;line-height:1.7}
+.footer h5{font-family:var(--font-display);font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;font-weight:600}
+.footer__links li+li{margin-top:11px}
+.footer__links a{font-size:.91rem;color:var(--muted);transition:color .28s,padding-left .28s}
+.footer__links a:hover{color:var(--accent);padding-left:6px}
+.footer__contact li{display:flex;gap:11px;align-items:flex-start;font-size:.9rem;color:var(--muted);margin-bottom:14px}
+.footer__contact svg{width:16px;height:16px;color:var(--accent);flex-shrink:0;margin-top:4px}
+.footer__bottom{border-top:1px solid var(--line);padding:24px 0;display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
+.footer__bottom p,.footer__bottom a{font-size:.83rem;color:var(--muted-2)}
+.footer__legal{display:flex;gap:22px;flex-wrap:wrap}
+.footer__legal button{font-size:.83rem;color:var(--muted-2);transition:color .28s}
+.footer__legal button:hover{color:var(--accent)}
+
+/* =======================================================================
+   14. MODALES + TOAST + BACK TO TOP
+   ======================================================================= */
+.modal{position:fixed;inset:0;z-index:1500;display:grid;place-items:center;padding:24px;opacity:0;visibility:hidden;transition:opacity .35s var(--ease),visibility .35s}
+.modal.is-open{opacity:1;visibility:visible}
+.modal__overlay{position:absolute;inset:0;background:rgba(5,5,6,.86);backdrop-filter:blur(9px)}
+.modal__box{
+  position:relative;width:100%;max-width:720px;max-height:88vh;overflow-y:auto;
+  background:linear-gradient(180deg,#17181C,#0E0F12);border:1px solid var(--line-strong);
+  border-radius:var(--radius-lg);box-shadow:var(--shadow);transform:translateY(22px) scale(.98);transition:transform .4s var(--ease);
+}
+.modal.is-open .modal__box{transform:none}
+.modal__close{
+  position:absolute;top:16px;right:16px;z-index:3;width:40px;height:40px;border-radius:50%;
+  background:rgba(10,10,11,.7);border:1px solid var(--line-strong);display:grid;place-items:center;
+  color:var(--text);transition:all .3s var(--ease);backdrop-filter:blur(6px);
+}
+.modal__close:hover{background:var(--accent);color:#0A0A0B;border-color:var(--accent);transform:rotate(90deg)}
+.modal__close svg{width:16px;height:16px}
+.modal__content{padding:36px}
+.modal__content h3{font-size:clamp(1.5rem,3.4vw,2rem);margin:14px 0 14px;letter-spacing:-.03em}
+.modal__content p{color:var(--muted);font-size:.97rem;margin-bottom:22px}
+.modal__list{display:grid;gap:11px;margin-bottom:26px}
+.modal__list li{display:flex;gap:11px;font-size:.92rem;color:var(--muted)}
+.modal__list svg{width:16px;height:16px;color:var(--accent);flex-shrink:0;margin-top:4px}
+.modal__actions{display:flex;flex-wrap:wrap;gap:12px;padding-top:24px;border-top:1px solid var(--line)}
+.modal__legal h3{font-size:1.6rem;margin-bottom:18px}
+.modal__legal h4{font-size:1rem;margin:24px 0 8px;color:var(--accent)}
+.modal__legal p,.modal__legal li{font-size:.92rem;color:var(--muted);line-height:1.75}
+.modal__legal ul{list-style:disc;padding-left:20px;margin-top:8px}
+.modal__legal .fill{margin-top:22px;padding:16px 18px;border-radius:var(--radius-sm);border:1px dashed var(--accent-line);background:var(--accent-soft);font-size:.85rem;color:#EBD9AE;line-height:1.65}
+
+.toast-wrap{position:fixed;bottom:26px;left:50%;transform:translateX(-50%);z-index:2000;display:grid;gap:10px;width:max-content;max-width:calc(100vw - 40px)}
+.toast{background:var(--surface-2);border:1px solid var(--accent-line);border-radius:13px;padding:14px 20px;font-size:.88rem;color:var(--text);box-shadow:var(--shadow);display:flex;align-items:center;gap:11px;animation:toastIn .4s var(--ease)}
+.toast svg{width:17px;height:17px;color:var(--accent);flex-shrink:0}
+.toast.is-out{animation:toastOut .35s var(--ease) forwards}
+@keyframes toastIn{from{opacity:0;transform:translateY(20px) scale(.96)}to{opacity:1;transform:none}}
+@keyframes toastOut{to{opacity:0;transform:translateY(14px) scale(.96)}}
+
+.to-top{
+  position:fixed;bottom:26px;right:26px;z-index:900;width:50px;height:50px;border-radius:14px;
+  background:var(--surface-2);border:1px solid var(--line-strong);display:grid;place-items:center;color:var(--accent);
+  opacity:0;visibility:hidden;transform:translateY(16px);transition:all .4s var(--ease);box-shadow:var(--shadow);
+}
+.to-top.is-shown{opacity:1;visibility:visible;transform:none}
+.to-top:hover{background:var(--accent);color:#0A0A0B;transform:translateY(-4px)}
+.to-top svg{width:19px;height:19px}
+
+/* =======================================================================
+   15. ANIMATIONS D'APPARITION
+   ======================================================================= */
+[data-reveal]{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+[data-reveal].is-in{opacity:1;transform:none}
+[data-reveal="left"]{transform:translateX(-32px)}
+[data-reveal="right"]{transform:translateX(32px)}
+[data-reveal="scale"]{transform:scale(.95)}
+[data-reveal].is-in{transform:none}
+
+/* =======================================================================
+   16. RESPONSIVE
+   ======================================================================= */
+@media (max-width:1080px){
+  .hero__inner{grid-template-columns:1fr;gap:56px}
+  .hero__visual{max-width:620px;margin-inline:auto;width:100%}
+  .hero__lead{max-width:100%}
+  .projects{grid-template-columns:repeat(2,1fr)}
+  .pricing{grid-template-columns:repeat(2,1fr)}
+  .why{grid-template-columns:repeat(2,1fr)}
+  .about__grid{grid-template-columns:1fr;gap:48px}
+  .about__panel{min-height:340px}
+  .contact__grid{grid-template-columns:1fr;gap:40px}
+  .footer__grid{grid-template-columns:1fr 1fr;gap:38px}
+  .nav__links{display:none}
+  .burger{display:grid}
+  .nav__cta .btn{display:none}
+}
+@media (max-width:760px){
+  .section{padding:80px 0}
+  .hero{padding:calc(var(--nav-h) + 46px) 0 82px}
+  .stats{grid-template-columns:1fr}
+  .stat{display:flex;align-items:center;gap:16px;padding:18px 20px}
+  .stat__num{font-size:1.85rem}
+  .stat__label{margin-top:0;font-size:.85rem}
+  .hero__chip--a{right:8px;top:14px;padding:9px 13px}
+  .hero__chip--b{left:8px;bottom:64px;padding:9px 13px}
+  .hero__chip strong{font-size:.9rem}
+  .hero__chip span{font-size:.65rem}
+  .hero__badge{right:8px;bottom:-18px;padding:11px 14px}
+  .hero__badge strong{font-size:.76rem}
+  .hero__badge span{font-size:.66rem}
+  .scroll-hint{display:none}
+  .projects{grid-template-columns:1fr}
+  .pricing{grid-template-columns:1fr}
+  .why{grid-template-columns:1fr}
+  .testi__top{grid-template-columns:1fr;gap:28px}
+  .testi__count{padding:28px}
+  .testi__grid{grid-template-columns:1fr}
+  .form__row{grid-template-columns:1fr}
+  .footer__grid{grid-template-columns:1fr;gap:34px}
+  .footer__bottom{flex-direction:column;text-align:center;justify-content:center}
+  .modal__content{padding:26px 22px}
+  .container{padding-inline:20px}
+  .hero__actions .btn{width:100%}
+  .disclaimer{flex-direction:column;gap:10px}
+  .to-top{bottom:18px;right:18px;width:46px;height:46px}
+}
+@media (max-width:400px){
+  .filters{gap:8px}
+  .filter{padding:9px 15px;font-size:13px}
+  .plan{padding:28px 22px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+  [data-reveal]{opacity:1!important;transform:none!important}
+}
+</style>
+</head>
+
+<body>
+<a class="skip-link" href="#accueil">Aller au contenu principal</a>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<!-- =======================================================================
+     NAVIGATION
+     ======================================================================= -->
+<header class="nav" id="nav">
+  <div class="container nav__inner">
+    <a href="#accueil" class="brand" aria-label="Yans — retour à l'accueil">
+      <span class="brand__mark" aria-hidden="true">YA</span>
+      <span>Yans<small>Créateur de sites web</small></span>
+    </a>
+
+    <nav class="nav__links" id="navLinks" aria-label="Navigation principale">
+      <a class="nav__link" href="#accueil">Accueil</a>
+      <a class="nav__link" href="#a-propos">À propos</a>
+      <a class="nav__link" href="#portfolio">Portfolio</a>
+      <a class="nav__link" href="#tarifs">Tarifs</a>
+      <a class="nav__link" href="#pourquoi">Pourquoi moi</a>
+      <a class="nav__link" href="#temoignages">Avis</a>
+      <a class="nav__link" href="#contact">Contact</a>
+    </nav>
+
+    <div class="nav__cta">
+      <a href="#tarifs" class="btn btn--ghost btn--sm">Voir les offres</a>
+      <a href="#contact" class="btn btn--primary btn--sm">
+        Me contacter
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <a class="m-link" href="#accueil">Accueil <span>01</span></a>
+  <a class="m-link" href="#a-propos">À propos <span>02</span></a>
+  <a class="m-link" href="#portfolio">Portfolio <span>03</span></a>
+  <a class="m-link" href="#tarifs">Tarifs <span>04</span></a>
+  <a class="m-link" href="#pourquoi">Pourquoi moi <span>05</span></a>
+  <a class="m-link" href="#temoignages">Avis clients <span>06</span></a>
+  <a class="m-link" href="#contact">Contact <span>07</span></a>
+  <div class="m-foot">
+    <a href="#tarifs" class="btn btn--ghost btn--block">Découvrir mes offres</a>
+    <a href="#contact" class="btn btn--primary btn--block">Me contacter</a>
+  </div>
+</div>
+
+<main id="main">
+
+<!-- =======================================================================
+     HERO
+     ======================================================================= -->
+<section class="hero" id="accueil">
+  <div class="hero__bg" aria-hidden="true">
+    <div class="hero__grid"></div>
+    <div class="hero__glow"></div>
+    <div class="hero__glow hero__glow--2"></div>
+  </div>
+
+  <div class="container hero__inner">
+    <div class="hero__text">
+      <span class="eyebrow" data-reveal>Freelance · Création de sites web</span>
+      <h1 data-reveal style="transition-delay:.08s">Votre présence en ligne<br>mérite <span class="hl">mieux.</span></h1>
+      <p class="hero__lead" data-reveal style="transition-delay:.16s">
+        Je conçois des sites web modernes, rapides et professionnels pour donner vie
+        à votre projet et développer votre activité.
+      </p>
+
+      <div class="hero__actions" data-reveal style="transition-delay:.24s">
+        <a href="#tarifs" class="btn btn--primary">
+          Découvrir mes offres
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#contact" class="btn btn--ghost">
+          Me contacter
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg>
+        </a>
+      </div>
+
+      <div class="stats" data-reveal style="transition-delay:.32s">
+        <div class="stat">
+          <div class="stat__num"><span data-count="2">0</span></div>
+          <div class="stat__label">ans d’expérience</div>
+        </div>
+        <div class="stat">
+          <div class="stat__num"><span data-count="6">0</span></div>
+          <div class="stat__label">clients satisfaits</div>
+        </div>
+        <div class="stat">
+          <div class="stat__num"><span data-count="100">0</span><sup>%</sup></div>
+          <div class="stat__label">d’engagement pour chaque projet</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__visual" data-reveal="scale" style="transition-delay:.2s">
+      <div class="hero__art" id="heroArt" aria-hidden="true"></div>
+      <div class="hero__chip hero__chip--a"><div><strong>100 %</strong><span>ENGAGEMENT</span></div></div>
+      <div class="hero__chip hero__chip--b"><div><strong>6</strong><span>CLIENTS SATISFAITS</span></div></div>
+      <div class="hero__badge">
+        <span class="dot" aria-hidden="true"></span>
+        <span><strong>Disponible pour de nouveaux projets</strong><span>Réponse sous 24 à 48 h ouvrées</span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint" aria-hidden="true"><span class="mouse"></span>Défiler</div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track" id="marqueeTrack"></div>
+</div>
+
+<!-- =======================================================================
+     À PROPOS
+     ======================================================================= -->
+<section class="section section--alt" id="a-propos">
+  <div class="container">
+    <div class="about__grid">
+      <div class="about__panel" data-reveal="left">
+        <div>
+          <span class="tag">À propos</span>
+          <div class="about__mono" style="margin-top:26px">
+            2<span style="font-size:.42em;color:var(--muted)"> ans</span>
+            <small>de pratique quotidienne du design et de l’intégration web, au service de projets réels.</small>
+          </div>
+        </div>
+        <div class="about__chips">
+          <span class="chip">HTML / CSS</span>
+          <span class="chip">JavaScript</span>
+          <span class="chip">Design responsive</span>
+          <span class="chip">UX / UI</span>
+          <span class="chip">Performance</span>
+          <span class="chip">Accessibilité</span>
+        </div>
+      </div>
+
+      <div class="about__text" data-reveal="right">
+        <span class="eyebrow">Qui suis-je ?</span>
+        <h2 class="section-title">Un freelance <span class="hl">passionné</span> par le web</h2>
+        <p>
+          Depuis 2 ans, je crée des sites web modernes et adaptés aux besoins de mes clients.
+          Mon objectif est simple : proposer des sites esthétiques, faciles à utiliser et pensés
+          pour mettre en valeur chaque activité. J’accompagne mes clients de la conception à la
+          livraison, avec une attention particulière portée aux détails et à leurs besoins.
+        </p>
+
+        <ul class="about__list">
+          <li class="about__item">
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/><circle cx="12" cy="12" r="4"/></svg></span>
+            <div><h4>2 ans d’expérience en création web</h4><p>Deux années de conception, d’intégration et d’amélioration continue de sites web.</p></div>
+          </li>
+          <li class="about__item">
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+            <div><h4>6 clients satisfaits</h4><p>Autant de collaborations menées jusqu’à la livraison finale du site.</p></div>
+          </li>
+          <li class="about__item">
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span>
+            <div><h4>Une approche personnalisée</h4><p>Chaque projet est étudié individuellement, sans modèle imposé ni solution toute faite.</p></div>
+          </li>
+          <li class="about__item">
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.5h5a1.8 1.8 0 0 1 0 3.6h-5h5.2"/></svg></span>
+            <div><h4>Un excellent rapport qualité-prix</h4><p>Des tarifs clairs et accessibles, annoncés dès le départ, sans surprise.</p></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =======================================================================
+     PORTFOLIO
+     ======================================================================= -->
+<section class="section" id="portfolio">
+  <div class="container">
+    <div class="section-head section-head--center" data-reveal>
+      <span class="eyebrow">Portfolio</span>
+      <h2 class="section-title">Des projets pensés pour <span class="hl">chaque activité</span></h2>
+      <p class="section-sub">
+        Sites pour coachs sportifs, sites vitrines pour professionnels, sites d’entreprise
+        et landing pages commerciales.
+      </p>
+    </div>
+
+    <div class="filters" role="tablist" aria-label="Filtrer les projets par catégorie" data-reveal>
+      <button class="filter is-active" data-filter="all" role="tab" aria-selected="true">Tous les projets · 6</button>
+      <button class="filter" data-filter="coach" role="tab" aria-selected="false">Coachs sportifs</button>
+      <button class="filter" data-filter="vitrine" role="tab" aria-selected="false">Sites vitrines</button>
+      <button class="filter" data-filter="entreprise" role="tab" aria-selected="false">Entreprises</button>
+      <button class="filter" data-filter="landing" role="tab" aria-selected="false">Landing pages</button>
+    </div>
+
+    <div class="projects" id="projectsGrid"><!-- Injecté par JS --></div>
+
+    <div class="disclaimer" data-reveal>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>
+      <p>
+        <strong>Transparence totale :</strong> les projets présentés ci-dessus sont des
+        <strong>projets de démonstration</strong> réalisés pour illustrer mon style et mon savoir-faire.
+        Ils ne sont associés à aucun client réel et ne présentent aucun faux témoignage.
+        Mes véritables réalisations ainsi que leurs liens seront ajoutés dès qu’elles seront
+        disponibles et publiées avec l’accord des clients concernés.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- =======================================================================
+     TARIFS
+     ✏️ POUR MODIFIER UNE OFFRE : chaque carte est délimitée par un commentaire
+        « ===== OFFRE X ===== ». Prix = <span class="val"> + <span class="dec">
+     ======================================================================= -->
+<section class="section section--alt section--bordered" id="tarifs">
+  <div class="container">
+    <div class="section-head section-head--center" data-reveal>
+      <span class="eyebrow">Tarifs</span>
+      <h2 class="section-title">Des offres <span class="hl">claires</span>, sans surprise</h2>
+      <p class="section-sub">Quatre formules pensées pour s’adapter à l’ampleur de votre projet et à votre budget.</p>
+    </div>
+
+    <div class="pricing">
+
+      <!-- ===== OFFRE START ===== -->
+      <article class="card plan" data-reveal style="transition-delay:.05s">
+        <div class="plan__name">Offre Start</div>
+        <div class="plan__price"><span class="cur">€</span><span class="val">24</span><span class="dec">,99</span></div>
+        <p class="plan__for">Pour lancer sa présence en ligne.</p>
+        <div class="plan__rule"></div>
+        <ul class="plan__list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Site web simple et moderne</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Design responsive</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Présentation de l’activité</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Formulaire de contact si adapté</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Mise en page professionnelle</li>
+        </ul>
+        <button class="btn btn--ghost btn--block btn-plan" data-plan="Offre Start — 24,99 €">Choisir cette offre</button>
+      </article>
+
+      <!-- ===== OFFRE PRO ===== -->
+      <article class="card plan" data-reveal style="transition-delay:.12s">
+        <div class="plan__name">Offre Pro</div>
+        <div class="plan__price"><span class="cur">€</span><span class="val">54</span><span class="dec">,99</span></div>
+        <p class="plan__for">Pour une présence en ligne plus complète.</p>
+        <div class="plan__rule"></div>
+        <ul class="plan__list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Toutes les fonctionnalités de START</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Plusieurs sections personnalisées</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Design plus approfondi</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Mise en valeur des services</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Navigation optimisée</li>
+        </ul>
+        <button class="btn btn--ghost btn--block btn-plan" data-plan="Offre Pro — 54,99 €">Choisir cette offre</button>
+      </article>
+
+      <!-- ===== OFFRE PREMIUM ===== -->
+      <article class="card plan plan--featured" data-reveal style="transition-delay:.19s">
+        <span class="plan__flag" aria-hidden="true">Recommandé</span>
+        <div class="plan__name">Offre Premium</div>
+        <div class="plan__price"><span class="cur">€</span><span class="val">99</span><span class="dec">,99</span></div>
+        <p class="plan__for">Pour un site plus personnalisé.</p>
+        <div class="plan__rule"></div>
+        <ul class="plan__list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Toutes les fonctionnalités de PRO</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Design personnalisé</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Sections supplémentaires</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Présentation détaillée des prestations</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Optimisation de l’expérience utilisateur</li>
+        </ul>
+        <button class="btn btn--primary btn--block btn-plan" data-plan="Offre Premium — 99,99 €">Choisir cette offre</button>
+      </article>
+
+      <!-- ===== OFFRE ELITE ===== -->
+      <article class="card plan" data-reveal style="transition-delay:.26s">
+        <div class="plan__name">Offre Elite</div>
+        <div class="plan__price"><span class="cur">€</span><span class="val">129</span><span class="dec">,99</span></div>
+        <p class="plan__for">Pour un projet web plus ambitieux.</p>
+        <div class="plan__rule"></div>
+        <ul class="plan__list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Toutes les fonctionnalités de PREMIUM</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Personnalisation avancée</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Mise en page haut de gamme</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Accompagnement personnalisé</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Ajustements convenus avant la livraison</li>
+        </ul>
+        <button class="btn btn--ghost btn--block btn-plan" data-plan="Offre Elite — 129,99 €">Choisir cette offre</button>
+      </article>
+
+    </div>
+
+    <p class="pricing__note" data-reveal>
+      Chaque projet est différent. <strong>Contactez-moi</strong> pour définir l’offre la plus adaptée à vos besoins.
+    </p>
+  </div>
+</section>
+
+<!-- =======================================================================
+     POURQUOI ME CHOISIR
+     ======================================================================= -->
+<section class="section" id="pourquoi">
+  <div class="container">
+    <div class="section-head section-head--center" data-reveal>
+      <span class="eyebrow">Pourquoi me choisir ?</span>
+      <h2 class="section-title">Une collaboration <span class="hl">simple</span> et sérieuse</h2>
+      <p class="section-sub">Quatre raisons concrètes de me confier la création de votre site web.</p>
+    </div>
+
+    <div class="why">
+      <article class="card why__card" data-reveal style="transition-delay:.04s">
+        <span class="why__num">01</span>
+        <span class="why__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15 9.5c-.5-1-1.6-1.5-3-1.5-1.7 0-3 .9-3 2.2 0 3 6.2 1.4 6.2 4.4 0 1.3-1.4 2.2-3.2 2.2-1.5 0-2.6-.6-3.1-1.6"/><path d="M12 6v12"/></svg></span>
+        <h3>Tarifs accessibles</h3>
+        <p>Des prix clairs, annoncés à l’avance et adaptés aux indépendants, petites structures et projets personnels.</p>
+      </article>
+
+      <article class="card why__card" data-reveal style="transition-delay:.1s">
+        <span class="why__num">02</span>
+        <span class="why__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M6 8h5M6 11h3"/></svg></span>
+        <h3>Design moderne et responsive</h3>
+        <p>Un rendu soigné sur ordinateur, tablette et smartphone, avec une attention constante portée à la lisibilité.</p>
+      </article>
+
+      <article class="card why__card" data-reveal style="transition-delay:.16s">
+        <span class="why__num">03</span>
+        <span class="why__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-8 8H5l-2 2V12a8 8 0 0 1 8-8h2a8 8 0 0 1 8 8Z"/><path d="M9 11h6M9 14.5h4"/></svg></span>
+        <h3>Échanges directs avec le créateur</h3>
+        <p>Vous discutez directement avec la personne qui conçoit votre site : pas d’intermédiaire, pas de malentendu.</p>
+      </article>
+
+      <article class="card why__card" data-reveal style="transition-delay:.22s">
+        <span class="why__num">04</span>
+        <span class="why__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.4 5 5.6.8-4 3.9 1 5.5-5-2.7-5 2.7 1-5.5-4-3.9 5.6-.8Z"/></svg></span>
+        <h3>Accompagnement personnalisé</h3>
+        <p>De la première discussion à la livraison, vos retours sont pris en compte et intégrés au fil du projet.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- =======================================================================
+     TÉMOIGNAGES
+     ======================================================================= -->
+<section class="section section--alt section--bordered" id="temoignages">
+  <div class="container">
+    <div class="section-head section-head--center" data-reveal>
+      <span class="eyebrow">Témoignages</span>
+      <h2 class="section-title">La satisfaction de mes clients <span class="hl">avant tout</span></h2>
+    </div>
+
+    <div class="testi__top" data-reveal>
+      <div class="testi__count">
+        <div class="big"><span data-count="6">0</span></div>
+        <span>clients satisfaits</span>
+      </div>
+      <p>
+        Six personnes m’ont déjà fait confiance pour la création de leur site web.
+        Leurs retours comptent énormément : ce sont eux qui font évoluer ma façon de travailler.
+        <br><br>
+        Les emplacements ci-dessous sont volontairement vides. Ils accueilleront
+        <strong style="color:var(--accent)">de vrais avis clients</strong>, publiés uniquement avec
+        l’accord explicite des personnes concernées — aucun avis, nom ou note inventé.
+      </p>
+    </div>
+
+    <div class="testi__grid">
+      <!-- ✏️ EMPLACEMENT AVIS 1 : remplacez par un vrai avis (texte + prénom + activité + note) -->
+      <article class="testi__slot" data-reveal style="transition-delay:.04s">
+        <svg class="quote" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.6 5C6.5 6.6 4.5 9.6 4.5 13v6h7v-7H8c0-2.3 1-4.2 2.8-5.3Zm10 0c-3.1 1.6-5.1 4.6-5.1 8v6h7v-7h-3.5c0-2.3 1-4.2 2.8-5.3Z"/></svg>
+        <div>
+          <h4>Emplacement pour un avis client</h4>
+          <p>Le témoignage authentique de votre client s’affichera ici, une fois son accord obtenu.</p>
+        </div>
+        <div class="who">
+          <span class="av" aria-hidden="true">?</span>
+          <div><strong>Nom du client</strong><span>Activité · Note sur 5</span></div>
+        </div>
+      </article>
+
+      <!-- ✏️ EMPLACEMENT AVIS 2 -->
+      <article class="testi__slot" data-reveal style="transition-delay:.1s">
+        <svg class="quote" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.6 5C6.5 6.6 4.5 9.6 4.5 13v6h7v-7H8c0-2.3 1-4.2 2.8-5.3Zm10 0c-3.1 1.6-5.1 4.6-5.1 8v6h7v-7h-3.5c0-2.3 1-4.2 2.8-5.3Z"/></svg>
+        <div>
+          <h4>Emplacement pour un avis client</h4>
+          <p>Deuxième espace disponible pour un retour réel, avec le prénom et le secteur d’activité.</p>
+        </div>
+        <div class="who">
+          <span class="av" aria-hidden="true">?</span>
+          <div><strong>Nom du client</strong><span>Activité · Note sur 5</span></div>
+        </div>
+      </article>
+
+      <!-- ✏️ EMPLACEMENT AVIS 3 -->
+      <article class="testi__slot" data-reveal style="transition-delay:.16s">
+        <svg class="quote" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.6 5C6.5 6.6 4.5 9.6 4.5 13v6h7v-7H8c0-2.3 1-4.2 2.8-5.3Zm10 0c-3.1 1.6-5.1 4.6-5.1 8v6h7v-7h-3.5c0-2.3 1-4.2 2.8-5.3Z"/></svg>
+        <div>
+          <h4>Emplacement pour un avis client</h4>
+          <p>Troisième espace disponible. Pensez à demander l’autorisation écrite avant publication.</p>
+        </div>
+        <div class="who">
+          <span class="av" aria-hidden="true">?</span>
+          <div><strong>Nom du client</strong><span>Activité · Note sur 5</span></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- =======================================================================
+     CONTACT
+     ======================================================================= -->
+<section class="section" id="contact">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">Contact</span>
+      <h2 class="section-title">Parlons de votre <span class="hl">projet</span></h2>
+      <p class="section-sub">
+        Vous avez une idée, un projet ou besoin d’un site web ? Contactez-moi et discutons
+        ensemble de la meilleure solution.
+      </p>
+    </div>
+
+    <div class="contact__grid">
+      <div data-reveal="left">
+        <form class="form" id="contactForm" novalidate>
+          <div class="form__row">
+            <div class="field" id="f-name">
+              <label for="name">Nom complet <span class="req" aria-hidden="true">*</span></label>
+              <input type="text" id="name" name="name" placeholder="Prénom et nom" autocomplete="name" required>
+              <span class="err" id="err-name">Merci d’indiquer votre nom.</span>
+            </div>
+            <div class="field" id="f-email">
+              <label for="email">Adresse e-mail <span class="req" aria-hidden="true">*</span></label>
+              <input type="email" id="email" name="email" placeholder="vous@exemple.com" autocomplete="email" required>
+              <span class="err" id="err-email">Merci d’indiquer une adresse e-mail valide.</span>
+            </div>
+          </div>
+
+          <div class="field" id="f-type">
+            <label for="projectType">Type de projet <span class="req" aria-hidden="true">*</span></label>
+            <select id="projectType" name="projectType" required>
+              <option value="">— Sélectionnez une option —</option>
+              <option value="Offre Start — 24,99 €">Offre Start — 24,99 €</option>
+              <option value="Offre Pro — 54,99 €">Offre Pro — 54,99 €</option>
+              <option value="Offre Premium — 99,99 €">Offre Premium — 99,99 €</option>
+              <option value="Offre Elite — 129,99 €">Offre Elite — 129,99 €</option>
+              <option value="Site vitrine pour professionnel">Site vitrine pour professionnel</option>
+              <option value="Site pour coach sportif">Site pour coach sportif</option>
+              <option value="Site d'entreprise">Site d’entreprise</option>
+              <option value="Landing page commerciale">Landing page commerciale</option>
+              <option value="Refonte d'un site existant">Refonte d’un site existant</option>
+              <option value="Autre / à définir ensemble">Autre / à définir ensemble</option>
+            </select>
+            <span class="err" id="err-type">Merci de choisir un type de projet.</span>
+          </div>
+
+          <div class="field" id="f-message">
+            <label for="message">Votre message <span class="req" aria-hidden="true">*</span></label>
+            <textarea id="message" name="message" placeholder="Décrivez votre projet en quelques lignes : votre activité, vos objectifs, vos envies…" required></textarea>
+            <span class="err" id="err-message">Merci de décrire brièvement votre projet (10 caractères minimum).</span>
+          </div>
+
+          <div class="form__foot">
+            <button type="submit" class="btn btn--primary" id="submitBtn">
+              Envoyer ma demande
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+            </button>
+            <p class="note">Les champs marqués d’un <span style="color:var(--accent)">*</span> sont obligatoires.</p>
+          </div>
+
+          <div class="form__msg" id="formMsg" role="status" aria-live="polite"></div>
+
+          <p class="note" style="margin-top:6px;padding:14px 16px;border:1px dashed var(--line-strong);border-radius:12px">
+            ⚙️ <strong style="color:var(--muted)">Formulaire à connecter :</strong> ce formulaire est
+            fonctionnel côté visiteur (validation, message de confirmation, pré-remplissage du logiciel
+            de messagerie). Pour recevoir les demandes dans votre boîte mail, renseignez la constante
+            <code style="color:var(--accent)">CONFIG.email</code> et/ou <code style="color:var(--accent)">CONFIG.formEndpoint</code>
+            en haut du script (compatible Formspree, Web3Forms, Getform, Netlify Forms ou EmailJS).
+          </p>
+        </form>
+      </div>
+
+      <aside class="contact__side" data-reveal="right">
+        <!-- ✏️ MODIFIER : remplacez par vos vraies coordonnées (ou laissez vide dans CONFIG) -->
+        <div class="cbox">
+          <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2.5"/><path d="m2.5 6.5 9.5 7 9.5-7"/></svg></span>
+          <h4>E-mail</h4>
+          <p class="val" id="contactEmail">votre.email@exemple.com</p>
+          <span class="todo">À configurer</span>
+        </div>
+
+        <div class="cbox">
+          <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.2" fill="currentColor" stroke="none"/></svg></span>
+          <h4>Instagram</h4>
+          <p class="val" id="contactInsta">@votre_compte</p>
+          <span class="todo">À configurer</span>
+        </div>
+
+        <div class="cbox">
+          <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></svg></span>
+          <h4>Disponibilité</h4>
+          <p class="val">Ouvert aux nouveaux projets. Échanges par e-mail ou en visio, selon votre préférence.</p>
+        </div>
+
+        <div class="cbox cbox--cta">
+          <h4>Une question sur les offres ?</h4>
+          <p>Comparez les quatre formules et choisissez celle qui correspond à votre projet.</p>
+          <a href="#tarifs" class="btn btn--primary btn--block btn--sm">Comparer les tarifs</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- =======================================================================
+     FOOTER
+     ======================================================================= -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="#accueil" class="brand">
+          <span class="brand__mark" aria-hidden="true">YA</span>
+          <span>Yans<small>Créateur de sites web</small></span>
+        </a>
+        <p>Sites web modernes, rapides et professionnels pour indépendants, coachs, entreprises et porteurs de projet.</p>
+      </div>
+
+      <div>
+        <h5>Navigation</h5>
+        <ul class="footer__links">
+          <li><a href="#accueil">Accueil</a></li>
+          <li><a href="#a-propos">À propos</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#tarifs">Tarifs</a></li>
+          <li><a href="#pourquoi">Pourquoi me choisir</a></li>
+          <li><a href="#temoignages">Témoignages</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h5>Offres</h5>
+        <ul class="footer__links">
+          <li><a href="#tarifs" data-scroll-plan="Offre Start — 24,99 €">Start — 24,99 €</a></li>
+          <li><a href="#tarifs" data-scroll-plan="Offre Pro — 54,99 €">Pro — 54,99 €</a></li>
+          <li><a href="#tarifs" data-scroll-plan="Offre Premium — 99,99 €">Premium — 99,99 €</a></li>
+          <li><a href="#tarifs" data-scroll-plan="Offre Elite — 129,99 €">Elite — 129,99 €</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h5>Coordonnées</h5>
+        <!-- ✏️ MODIFIER : remplacez par vos vraies coordonnées -->
+        <ul class="footer__contact">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2.5"/><path d="m2.5 6.5 9.5 7 9.5-7"/></svg>
+            <span>votre.email@exemple.com<br><em style="color:var(--muted-2);font-size:.78rem">— à configurer</em></span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.2" fill="currentColor" stroke="none"/></svg>
+            <span>@votre_compte<br><em style="color:var(--muted-2);font-size:.78rem">— à configurer</em></span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg>
+            <span>Ville / région — à compléter</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p>© <span id="year">2026</span> Yans — Tous droits réservés.</p>
+      <div class="footer__legal">
+        <button type="button" data-legal="mentions">Mentions légales</button>
+        <button type="button" data-legal="privacy">Politique de confidentialité</button>
+        <a href="#accueil">Retour en haut ↑</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" aria-label="Revenir en haut de la page">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<!-- MODALE PROJET -->
+<div class="modal" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="pmTitle" aria-hidden="true">
+  <div class="modal__overlay" data-close-modal></div>
+  <div class="modal__box">
+    <button class="modal__close" data-close-modal aria-label="Fermer">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+    <div class="modal__content">
+      <span class="tag" id="pmCat">Catégorie</span>
+      <h3 id="pmTitle">Titre du projet</h3>
+      <p id="pmDesc">Description</p>
+      <ul class="modal__list" id="pmList"></ul>
+      <div class="disclaimer" style="margin-top:0">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>
+        <p id="pmDemo">Projet de démonstration — aucun client réel n’y est associé.</p>
+      </div>
+      <div class="modal__actions">
+        <a href="#" class="btn btn--primary" id="pmLink" aria-disabled="true">
+          Ouvrir le site
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </a>
+        <a href="#contact" class="btn btn--ghost" data-close-modal>Demander un site similaire</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODALE LÉGALE -->
+<div class="modal" id="legalModal" role="dialog" aria-modal="true" aria-labelledby="lmTitle" aria-hidden="true">
+  <div class="modal__overlay" data-close-modal></div>
+  <div class="modal__box">
+    <button class="modal__close" data-close-modal aria-label="Fermer">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+    <div class="modal__content modal__legal">
+      <span class="tag">Document à compléter</span>
+      <h3 id="lmTitle">Mentions légales</h3>
+      <div id="lmBody"></div>
+    </div>
+  </div>
+</div>
+
+<div class="toast-wrap" id="toastWrap" aria-live="polite" aria-atomic="false"></div>
+
+<script>
+/* =======================================================================
+   CONFIGURATION GLOBALE — ✏️ MODIFIEZ UNIQUEMENT CETTE ZONE
+   ======================================================================= */
+const CONFIG = {
+  name: "Yans",
+  initials: "YA",
+
+  // ✏️ Coordonnées : laissez "" tant que vous n'avez pas d'adresse réelle.
+  //    Dès qu'une valeur est renseignée, les liens deviennent actifs et la
+  //    mention « À configurer » disparaît automatiquement.
+  email: "",                 // ex : "contact@yans-web.fr"
+  instagram: "",             // ex : "https://instagram.com/mon_compte"
+  instagramLabel: "",        // ex : "@mon_compte"
+
+  // ✏️ Connexion du formulaire de contact (optionnel).
+  //    Laissez "" pour le mode « brouillon e-mail » (mailto).
+  //      Formspree  : "https://formspree.io/f/VOTRE_ID"
+  //      Web3Forms  : "https://api.web3forms.com/submit" (+ input name="access_key")
+  //      Getform    : "https://getform.io/f/VOTRE_ID"
+  //      Netlify    : ajouter netlify data-netlify="true" sur la balise <form>
+  formEndpoint: ""
+};
+
+/* =======================================================================
+   DONNÉES — PROJETS DE DÉMONSTRATION
+   ✏️ Remplacez par vos vrais projets :
+      title, catLabel, short, description, features[],
+      url:"https://..."  +  demo:false   → le badge « Démo » disparaît
+      et le bouton « Ouvrir le site » devient actif.
+   ======================================================================= */
+const PROJECTS = [
+  {
+    id:"p1", cover:"arc", cat:"coach", catLabel:"Coachs sportifs", badge:"Sport",
+    title:"Programme Coaching Sportif",
+    short:"Projet de démonstration — site vitrine pour coach sportif : programmes, suivi et prise de contact.",
+    description:"Direction artistique sombre et énergique, pensée pour valoriser l’image du coach et transformer les visiteurs en demandes de séance. La structure met en avant les programmes, les créneaux disponibles et un appel à l’action unique et lisible.",
+    features:["Structure : accueil, programmes, à propos, tarifs, contact","Mise en avant visuelle des formules et des résultats","Bouton d’action principal visible dès le premier écran","Adapté mobile, tablette et ordinateur"],
+    url:"", demo:true
+  },
+  {
+    id:"p2", cover:"grid", cat:"vitrine", catLabel:"Sites vitrines pour professionnels", badge:"Professionnels",
+    title:"Cabinet & Conseil",
+    short:"Projet de démonstration — site vitrine élégant pour un professionnel libéral ou un cabinet.",
+    description:"Un univers clair et rassurant, avec une typographie posée et beaucoup d’espace. L’objectif : inspirer confiance immédiatement et présenter les prestations de façon hiérarchisée, sans surcharge visuelle.",
+    features:["Présentation détaillée des prestations","Bloc « à propos » pour humaniser l’activité","Coordonnées et formulaire de contact accessibles","Palette sobre et lecture confortable"],
+    url:"", demo:true
+  },
+  {
+    id:"p3", cover:"wave", cat:"vitrine", catLabel:"Sites vitrines pour professionnels", badge:"Artisanat",
+    title:"Atelier & Savoir-faire",
+    short:"Projet de démonstration — site vitrine orienté artisanat, boutique ou métier manuel.",
+    description:"Mise en avant du geste et du savoir-faire grâce à de grandes zones visuelles et une narration par sections. Le parcours de lecture guide naturellement le visiteur vers la découverte des réalisations puis vers la demande de devis.",
+    features:["Galerie de réalisations en grille","Section savoir-faire et valeurs","Mise en avant des zones d’intervention","Appel à l’action « Demander un devis »"],
+    url:"", demo:true
+  },
+  {
+    id:"p4", cover:"blocks", cat:"entreprise", catLabel:"Sites pour entreprises", badge:"Entreprise",
+    title:"Structure Corporate",
+    short:"Projet de démonstration — site d’entreprise : activités, équipe, chiffres clés et actualités.",
+    description:"Une architecture professionnelle et crédible, avec une navigation claire par univers métier. Les blocs de chiffres clés et les cartes de services apportent de la lisibilité et renforcent l’image de sérieux de la structure.",
+    features:["Navigation par pôles d’activité","Bloc chiffres clés et références","Présentation de l’équipe et des valeurs","Pied de page complet avec liens utiles"],
+    url:"", demo:true
+  },
+  {
+    id:"p5", cover:"orbit", cat:"landing", catLabel:"Landing pages commerciales", badge:"Landing",
+    title:"Lancement d’offre",
+    short:"Projet de démonstration — landing page conçue pour une offre unique et une conversion directe.",
+    description:"Page courte et percutante : une promesse forte, trois arguments, une preuve visuelle et un seul objectif de conversion. Chaque section est construite pour lever une objection et rapprocher le visiteur du formulaire.",
+    features:["Une seule action : remplir le formulaire","Hiérarchie visuelle orientée conversion","Blocs bénéfices + offre + réassurance","Élément d’urgence optionnel"],
+    url:"", demo:true
+  },
+  {
+    id:"p6", cover:"beam", cat:"landing", catLabel:"Landing pages commerciales", badge:"Événement",
+    title:"Page Événement & Inscription",
+    short:"Projet de démonstration — landing page d’inscription à un événement, webinaire ou promotion.",
+    description:"Composition en deux colonnes : l’information essentielle d’un côté, le module d’inscription de l’autre. Le visiteur comprend en quelques secondes la date, le format, et ce qu’il doit faire pour réserver sa place.",
+    features:["Informations clés visibles immédiatement","Module d’inscription mis en avant","Programme détaillé en accordéon","Rappel de l’appel à l’action en bas de page"],
+    url:"", demo:true
+  }
+];
+
+/* =======================================================================
+   VISUELS ABSTRAITS (SVG) — aucune image externe, poids quasi nul
+   ======================================================================= */
+const GOLD = "#D6B36A";
+
+function coverBase(inner, uid){
+  return `<svg viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="cbg-${uid}" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#15161B"/><stop offset="55%" stop-color="#0D0E12"/><stop offset="100%" stop-color="#08090B"/>
+      </linearGradient>
+      <radialGradient id="cgl-${uid}" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="rgba(214,179,106,.38)"/><stop offset="60%" stop-color="rgba(214,179,106,.09)"/><stop offset="100%" stop-color="rgba(214,179,106,0)"/>
+      </radialGradient>
+      <linearGradient id="cac-${uid}" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#EEDCB2"/><stop offset="100%" stop-color="#A9842F"/>
+      </linearGradient>
+      <pattern id="cdo-${uid}" width="26" height="26" patternUnits="userSpaceOnUse">
+        <circle cx="2" cy="2" r="1.15" fill="rgba(255,255,255,.085)"/>
+      </pattern>
+    </defs>
+    <rect width="640" height="400" fill="url(#cbg-${uid})"/>
+    <rect width="640" height="400" fill="url(#cdo-${uid})"/>
+    ${inner}
+    <rect x=".5" y=".5" width="639" height="399" fill="none" stroke="rgba(255,255,255,.07)"/>
+  </svg>`;
+}
+
+const COVERS = {
+  /* Hero : composition large */
+  hero(uid){
+    let s = `<circle cx="470" cy="190" r="250" fill="url(#cgl-${uid})"/>`;
+    for(let i=0;i<5;i++){
+      s += `<circle cx="470" cy="190" r="${68+i*42}" fill="none" stroke="rgba(214,179,106,${(0.30-i*0.045).toFixed(3)})" stroke-width="1.1"/>`;
+    }
+    s += `<circle cx="470" cy="190" r="46" fill="rgba(214,179,106,.13)" stroke="rgba(214,179,106,.5)" stroke-width="1.4"/>`;
+    s += `<path d="M456 168 L494 190 L456 212 Z" fill="url(#cac-${uid})"/>`;
+    for(let i=0;i<7;i++){
+      const a = (i/7)*Math.PI*2;
+      const x = 470 + Math.cos(a)*152, y = 190 + Math.sin(a)*152;
+      s += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${i%2?3:5}" fill="${i%2?'rgba(255,255,255,.28)':GOLD}"/>`;
+    }
+    s += `<path d="M40 356 C 150 300, 210 380, 320 320" fill="none" stroke="rgba(214,179,106,.28)" stroke-width="1.6" stroke-linecap="round"/>`;
+    s += `<path d="M40 320 C 150 264, 210 344, 320 284" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="1.4" stroke-linecap="round"/>`;
+    s += `<rect x="40" y="46" width="6" height="52" rx="3" fill="url(#cac-${uid})"/>`;
+    s += `<rect x="58" y="60" width="132" height="9" rx="4.5" fill="rgba(255,255,255,.5)"/>`;
+    s += `<rect x="58" y="80" width="88" height="7" rx="3.5" fill="rgba(255,255,255,.18)"/>`;
+    return coverBase(s, uid);
+  },
+
+  arc(uid){
+    let s = `<circle cx="452" cy="200" r="200" fill="url(#cgl-${uid})"/>`;
+    for(let i=0;i<4;i++) s += `<circle cx="452" cy="200" r="${60+i*40}" fill="none" stroke="rgba(214,179,106,${(0.34-i*0.06).toFixed(2)})" stroke-width="1.2"/>`;
+    s += `<circle cx="452" cy="200" r="40" fill="rgba(214,179,106,.14)" stroke="rgba(214,179,106,.55)" stroke-width="1.4"/>`;
+    s += `<path d="M40 330 A 260 260 0 0 1 250 74" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="1.4"/>`;
+    s += `<rect x="40" y="150" width="4" height="60" rx="2" fill="${GOLD}"/>`;
+    s += `<rect x="58" y="158" width="120" height="10" rx="5" fill="rgba(255,255,255,.55)"/>`;
+    s += `<rect x="58" y="180" width="82" height="8" rx="4" fill="rgba(255,255,255,.2)"/>`;
+    s += `<rect x="58" y="198" width="98" height="8" rx="4" fill="rgba(255,255,255,.14)"/>`;
+    return coverBase(s, uid);
+  },
+
+  grid(uid){
+    let s = `<circle cx="320" cy="200" r="230" fill="url(#cgl-${uid})" opacity=".8"/>`;
+    for(let r=0;r<4;r++)for(let c=0;c<6;c++){
+      const x = 140 + c*72, y = 92 + r*72;
+      const acc = (r+c) % 5 === 0;
+      s += `<rect x="${x}" y="${y}" width="52" height="52" rx="13" fill="${acc?'rgba(214,179,106,.16)':'rgba(255,255,255,.035)'}" stroke="${acc?'rgba(214,179,106,.5)':'rgba(255,255,255,.08)'}" stroke-width="1.1"/>`;
+      if(acc) s += `<circle cx="${x+26}" cy="${y+26}" r="7" fill="${GOLD}"/>`;
+    }
+    s += `<rect x="40" y="60" width="4" height="42" rx="2" fill="${GOLD}"/>`;
+    s += `<rect x="56" y="66" width="70" height="9" rx="4.5" fill="rgba(255,255,255,.5)"/>`;
+    s += `<rect x="56" y="86" width="46" height="7" rx="3.5" fill="rgba(255,255,255,.18)"/>`;
+    return coverBase(s, uid);
+  },
+
+  wave(uid){
+    let s = `<circle cx="330" cy="130" r="220" fill="url(#cgl-${uid})" opacity=".85"/>`;
+    for(let i=0;i<6;i++){
+      const y = 150 + i*34;
+      s += `<path d="M0 ${y} C 140 ${y-46}, 260 ${y+46}, 400 ${y} S 560 ${y-40}, 640 ${y}" fill="none" stroke="${i===2?'rgba(214,179,106,.6)':'rgba(255,255,255,'+(0.13-i*0.015).toFixed(3)+')'}" stroke-width="${i===2?2:1.3}"/>`;
+    }
+    s += `<circle cx="470" cy="112" r="34" fill="rgba(214,179,106,.14)" stroke="rgba(214,179,106,.5)" stroke-width="1.4"/>`;
+    s += `<rect x="40" y="52" width="4" height="42" rx="2" fill="${GOLD}"/>`;
+    s += `<rect x="56" y="58" width="96" height="9" rx="4.5" fill="rgba(255,255,255,.5)"/>`;
+    s += `<rect x="56" y="78" width="60" height="7" rx="3.5" fill="rgba(255,255,255,.18)"/>`;
+    return coverBase(s, uid);
+  },
+
+  blocks(uid){
+    let s = `<circle cx="200" cy="300" r="230" fill="url(#cgl-${uid})" opacity=".8"/>`;
+    s += `<rect x="300" y="70" width="230" height="150" rx="22" fill="rgba(214,179,106,.11)" stroke="rgba(214,179,106,.42)" stroke-width="1.3"/>`;
+    s += `<rect x="240" y="130" width="230" height="150" rx="22" fill="rgba(255,255,255,.045)" stroke="rgba(255,255,255,.14)" stroke-width="1.3"/>`;
+    s += `<rect x="180" y="192" width="230" height="150" rx="22" fill="#101116" stroke="rgba(214,179,106,.3)" stroke-width="1.3"/>`;
+    s += `<rect x="206" y="222" width="86" height="10" rx="5" fill="${GOLD}"/>`;
+    s += `<rect x="206" y="246" width="150" height="7" rx="3.5" fill="rgba(255,255,255,.22)"/>`;
+    s += `<rect x="206" y="264" width="118" height="7" rx="3.5" fill="rgba(255,255,255,.14)"/>`;
+    s += `<rect x="206" y="292" width="76" height="26" rx="13" fill="url(#cac-${uid})"/>`;
+    s += `<rect x="40" y="60" width="4" height="42" rx="2" fill="${GOLD}"/>`;
+    s += `<rect x="56" y="66" width="80" height="9" rx="4.5" fill="rgba(255,255,255,.5)"/>`;
+    return coverBase(s, uid);
+  },
+
+  orbit(uid){
+    let s = `<circle cx="320" cy="200" r="210" fill="url(#cgl-${uid})"/>`;
+    s += `<ellipse cx="320" cy="200" rx="196" ry="76" fill="none" stroke="rgba(255,255,255,.13)" stroke-width="1.2" transform="rotate(-22 320 200)"/>`;
+    s += `<ellipse cx="320" cy="200" rx="196" ry="76" fill="none" stroke="rgba(214,179,106,.32)" stroke-width="1.2" transform="rotate(34 320 200)"/>`;
+    s += `<ellipse cx="320" cy="200" rx="150" ry="150" fill="none" stroke="rgba(255,255,255,.07)" stroke-width="1.2" stroke-dasharray="5 9"/>`;
+    s += `<circle cx="320" cy="200" r="52" fill="#101116" stroke="rgba(214,179,106,.55)" stroke-width="1.6"/>`;
+    s += `<circle cx="320" cy="200" r="26" fill="url(#cac-${uid})"/>`;
+    s += `<circle cx="486" cy="140" r="8" fill="${GOLD}"/>`;
+    s += `<circle cx="158" cy="266" r="6" fill="rgba(255,255,255,.5)"/>`;
+    s += `<circle cx="402" cy="308" r="5" fill="rgba(214,179,106,.65)"/>`;
+    s += `<rect x="40" y="52" width="4" height="42" rx="2" fill="${GOLD}"/>`;
+    s += `<rect x="56" y="58" width="72" height="9" rx="4.5" fill="rgba(255,255,255,.5)"/>`;
+    s += `<rect x="56" y="78" width="48" height="7" rx="3.5" fill="rgba(255,255,255,.18)"/>`;
+    return coverBase(s, uid);
+  },
+
+  beam(uid){
+    let s = `<circle cx="500" cy="90" r="220" fill="url(#cgl-${uid})" opacity=".9"/>`;
+    for(let i=0;i<7;i++){
+      const x = -140 + i*118;
+      s += `<path d="M${x} 400 L${x+210} 0 L${x+262} 0 L${x+52} 400 Z" fill="${i%3===0?'rgba(214,179,106,.10)':'rgba(255,255,255,.028)'}"/>`;
+    }
+    s += `<rect x="120" y="140" width="400" height="120" rx="20" fill="rgba(10,11,14,.72)" stroke="rgba(214,179,106,.34)" stroke-width="1.2"/>`;
+    s += `<rect x="152" y="170" width="180" height="11" rx="5.5" fill="rgba(255,255,255,.6)"/>`;
+    s += `<rect x="152" y="194" width="260" height="8" rx="4" fill="rgba(255,255,255,.2)"/>`;
+    s += `<rect x="152" y="214" width="112" height="26" rx="13" fill="url(#cac-${uid})"/>`;
+    s += `<circle cx="468" cy="200" r="26" fill="none" stroke="rgba(214,179,106,.55)" stroke-width="1.4"/>`;
+    s += `<path d="M460 190 L480 200 L460 210 Z" fill="${GOLD}"/>`;
+    return coverBase(s, uid);
+  }
+};
+
+/* =======================================================================
+   INITIALISATION DU DOM
+   ======================================================================= */
+(function init(){
+  const heroArt = document.getElementById("heroArt");
+  if(heroArt) heroArt.innerHTML = COVERS.hero("hero");
+
+  const grid = document.getElementById("projectsGrid");
+  if(grid){
+    grid.innerHTML = PROJECTS.map((p,i)=>`
+      <article class="card project" data-cat="${p.cat}" data-reveal style="transition-delay:${(i%3)*0.07}s">
+        <div class="project__media">
+          ${p.demo ? '<span class="demo-flag">Démo</span>' : ''}
+          <span class="project__cat-badge">${p.badge}</span>
+          ${COVERS[p.cover](p.id)}
+        </div>
+        <div class="project__body">
+          <span class="project__cat">${p.catLabel}</span>
+          <h3>${p.title}</h3>
+          <p>${p.short}</p>
+          <div class="project__foot">
+            <button class="link-arrow" type="button" data-open-project="${p.id}">
+              Voir le projet
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+            <div class="project__stack">
+              <span>Responsive</span>
+              <span>${p.url ? "En ligne" : "Démo"}</span>
+            </div>
+          </div>
+        </div>
+      </article>`).join("");
+  }
+
+  const words = ["Design moderne","Sites responsives","Expérience utilisateur","Performance","Accessibilité","Accompagnement personnalisé","Code propre","Tarifs clairs"];
+  const track = document.getElementById("marqueeTrack");
+  if(track){
+    const line = words.map(w=>`${w}<i></i>`).join("");
+    track.innerHTML = `<span class="marquee__item">${line}</span><span class="marquee__item" aria-hidden="true">${line}</span>`;
+  }
+
+  const yEl = document.getElementById("year");
+  if(yEl) yEl.textContent = new Date().getFullYear();
+})();
+
+/* Coordonnées configurables */
+(function initContact(){
+  const emailEl = document.getElementById("contactEmail");
+  const instaEl = document.getElementById("contactInsta");
+  if(CONFIG.email && emailEl){
+    emailEl.innerHTML = `<a href="mailto:${CONFIG.email}" style="color:var(--accent)">${CONFIG.email}</a>`;
+    const t = emailEl.parentElement.querySelector(".todo"); if(t) t.remove();
+  }
+  if(CONFIG.instagram && instaEl){
+    instaEl.innerHTML = `<a href="${CONFIG.instagram}" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">${CONFIG.instagramLabel || CONFIG.instagram}</a>`;
+    const t = instaEl.parentElement.querySelector(".todo"); if(t) t.remove();
+  }
+})();
+
+/* =======================================================================
+   NAVIGATION
+   ======================================================================= */
+const nav = document.getElementById("nav");
+const progress = document.getElementById("progress");
+const toTopBtn = document.getElementById("toTop");
+const burger = document.getElementById("burger");
+const mobileMenu = document.getElementById("mobileMenu");
+
+function onScroll(){
+  const y = window.scrollY;
+  nav.classList.toggle("is-scrolled", y > 24);
+  toTopBtn.classList.toggle("is-shown", y > 620);
+  const h = document.documentElement.scrollHeight - window.innerHeight;
+  progress.style.transform = `scaleX(${h > 0 ? y / h : 0})`;
+}
+window.addEventListener("scroll", onScroll, {passive:true});
+onScroll();
+toTopBtn.addEventListener("click", ()=> window.scrollTo({top:0, behavior:"smooth"}));
+
+function setMenu(open){
+  burger.classList.toggle("is-open", open);
+  mobileMenu.classList.toggle("is-open", open);
+  burger.setAttribute("aria-expanded", String(open));
+  burger.setAttribute("aria-label", open ? "Fermer le menu" : "Ouvrir le menu");
+  mobileMenu.setAttribute("aria-hidden", String(!open));
+  document.body.classList.toggle("is-locked", open);
+  if(open){ [...mobileMenu.querySelectorAll(".m-link")].forEach((l,i)=> l.style.transitionDelay = (0.05 + i*0.045) + "s"); }
+  else { [...mobileMenu.querySelectorAll(".m-link")].forEach(l=> l.style.transitionDelay = "0s"); }
+}
+burger.addEventListener("click", ()=> setMenu(!mobileMenu.classList.contains("is-open")));
+mobileMenu.querySelectorAll("a").forEach(a=> a.addEventListener("click", ()=> setMenu(false)));
+
+const sections = [...document.querySelectorAll("main section[id]")];
+const navLinks = [...document.querySelectorAll(".nav__link")];
+if("IntersectionObserver" in window){
+  const spy = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting) navLinks.forEach(l=> l.classList.toggle("is-active", l.getAttribute("href") === "#" + e.target.id));
+    });
+  },{rootMargin:"-45% 0px -50% 0px", threshold:0});
+  sections.forEach(s=> spy.observe(s));
+}
+
+/* =======================================================================
+   ANIMATIONS + COMPTEURS
+   ======================================================================= */
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+if("IntersectionObserver" in window && !reduceMotion){
+  const rev = new IntersectionObserver((entries, obs)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("is-in"); obs.unobserve(e.target); } });
+  },{threshold:.12, rootMargin:"0px 0px -60px 0px"});
+  document.querySelectorAll("[data-reveal]").forEach(el=> rev.observe(el));
+} else {
+  document.querySelectorAll("[data-reveal]").forEach(el=> el.classList.add("is-in"));
+}
+
+function animateCount(el){
+  const target = parseInt(el.dataset.count, 10) || 0;
+  if(reduceMotion){ el.textContent = target; return; }
+  const dur = 1400, start = performance.now();
+  function step(now){
+    const p = Math.min((now - start) / dur, 1);
+    el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+    if(p < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+if("IntersectionObserver" in window){
+  const cObs = new IntersectionObserver((entries, obs)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ animateCount(e.target); obs.unobserve(e.target); } });
+  },{threshold:.5});
+  document.querySelectorAll("[data-count]").forEach(el=> cObs.observe(el));
+} else {
+  document.querySelectorAll("[data-count]").forEach(el=> el.textContent = el.dataset.count);
+}
+
+/* =======================================================================
+   FILTRES PORTFOLIO
+   ======================================================================= */
+const filterBtns = [...document.querySelectorAll(".filter")];
+filterBtns.forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    filterBtns.forEach(b=>{ b.classList.remove("is-active"); b.setAttribute("aria-selected","false"); });
+    btn.classList.add("is-active"); btn.setAttribute("aria-selected","true");
+    const f = btn.dataset.filter;
+    document.querySelectorAll(".project").forEach((card,i)=>{
+      const show = (f === "all" || card.dataset.cat === f);
+      card.classList.toggle("is-hidden", !show);
+      if(show && !reduceMotion){
+        card.style.animation = "none"; void card.offsetWidth;
+        card.style.animation = `fadeUp .5s var(--ease) ${i*0.05}s both`;
+      }
+    });
+  });
+});
+
+/* =======================================================================
+   MODALES
+   ======================================================================= */
+let lastFocused = null;
+function openModal(m){
+  lastFocused = document.activeElement;
+  m.classList.add("is-open"); m.setAttribute("aria-hidden","false");
+  document.body.classList.add("is-locked");
+  const cb = m.querySelector(".modal__close");
+  if(cb) setTimeout(()=> cb.focus(), 60);
+}
+function closeModal(m){
+  m.classList.remove("is-open"); m.setAttribute("aria-hidden","true");
+  document.body.classList.remove("is-locked");
+  if(lastFocused) lastFocused.focus();
+}
+document.querySelectorAll("[data-close-modal]").forEach(el=>{
+  el.addEventListener("click", ()=> closeModal(el.closest(".modal")));
+});
+document.addEventListener("keydown", e=>{
+  if(e.key === "Escape"){
+    document.querySelectorAll(".modal.is-open").forEach(m=> closeModal(m));
+    if(mobileMenu.classList.contains("is-open")) setMenu(false);
+  }
+  if(e.key === "Tab"){
+    const open = document.querySelector(".modal.is-open");
+    if(!open) return;
+    const f = [...open.querySelectorAll('a[href],button:not([disabled]),input,select,textarea,[tabindex]:not([tabindex="-1"])')].filter(el=> el.offsetParent !== null);
+    if(!f.length) return;
+    const first = f[0], last = f[f.length-1];
+    if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+    else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+  }
+});
+
+const projectModal = document.getElementById("projectModal");
+const pm = {
+  cat:document.getElementById("pmCat"), title:document.getElementById("pmTitle"),
+  desc:document.getElementById("pmDesc"), list:document.getElementById("pmList"),
+  demo:document.getElementById("pmDemo"), link:document.getElementById("pmLink")
+};
+let currentProject = null;
+
+document.addEventListener("click", e=>{
+  const trigger = e.target.closest("[data-open-project]");
+  if(!trigger) return;
+  const p = PROJECTS.find(x => x.id === trigger.dataset.openProject);
+  if(!p) return;
+  currentProject = p;
+  pm.cat.textContent = p.catLabel;
+  pm.title.textContent = p.title;
+  pm.desc.textContent = p.description;
+  pm.list.innerHTML = p.features.map(f=>`<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>${f}</span></li>`).join("");
+  pm.demo.textContent = p.demo
+    ? "Projet de démonstration — aucun client réel n’y est associé. Le lien vers le site en ligne sera ajouté dès que mes véritables réalisations seront disponibles."
+    : "Projet réel réalisé et publié avec l’accord du client.";
+  if(p.url){
+    pm.link.setAttribute("href", p.url);
+    pm.link.removeAttribute("aria-disabled");
+    pm.link.target = "_blank"; pm.link.rel = "noopener noreferrer";
+  } else {
+    pm.link.setAttribute("href", "#");
+    pm.link.setAttribute("aria-disabled","true");
+    pm.link.removeAttribute("target");
+  }
+  openModal(projectModal);
+});
+
+pm.link.addEventListener("click", e=>{
+  if(!currentProject || !currentProject.url){
+    e.preventDefault();
+    toast("Lien de démonstration : ajoutez l’URL réelle dans PROJECTS.url pour l’activer.");
+  }
+});
+
+/* Pages légales */
+const LEGAL = {
+  mentions:{
+    title:"Mentions légales",
+    html:`
+      <h4>1. Éditeur du site</h4>
+      <p>Nom / raison sociale : <strong>Yans — [à compléter]</strong><br>
+      Statut juridique : <strong>[À compléter — ex. micro-entrepreneur]</strong><br>
+      Numéro SIRET : <strong>[À compléter]</strong><br>
+      Adresse du siège : <strong>[À compléter]</strong><br>
+      E-mail : <strong>[À compléter]</strong><br>
+      Téléphone : <strong>[À compléter — facultatif]</strong></p>
+
+      <h4>2. Directeur de la publication</h4>
+      <p><strong>Yans — [à compléter]</strong></p>
+
+      <h4>3. Hébergement</h4>
+      <p>Hébergeur : <strong>[À compléter]</strong><br>
+      Adresse : <strong>[À compléter]</strong><br>
+      Site web : <strong>[À compléter]</strong></p>
+
+      <h4>4. Propriété intellectuelle</h4>
+      <p>L’ensemble des contenus présents sur ce site (textes, éléments graphiques, code) est la propriété exclusive de l’éditeur, sauf mention contraire. Toute reproduction, représentation ou diffusion, totale ou partielle, sans autorisation écrite préalable est interdite.</p>
+      <p>Les projets affichés dans la section Portfolio sont des projets de démonstration et ne sont associés à aucun client réel.</p>
+
+      <h4>5. TVA</h4>
+      <p><strong>[À compléter — ex. : TVA non applicable, art. 293 B du CGI, ou numéro de TVA intracommunautaire]</strong></p>
+
+      <h4>6. Contact</h4>
+      <p>Pour toute question relative à ces mentions légales : <strong>[À compléter — adresse e-mail]</strong></p>
+
+      <div class="fill">⚠️ Document modèle : remplacez chaque mention <strong>[À compléter]</strong> par vos informations réelles avant la mise en ligne. En cas de doute, faites relire cette page par un professionnel du droit.</div>`
+  },
+  privacy:{
+    title:"Politique de confidentialité",
+    html:`
+      <h4>1. Responsable du traitement</h4>
+      <p><strong>Yans — [À compléter : nom, statut, adresse, e-mail de contact]</strong></p>
+
+      <h4>2. Données collectées</h4>
+      <p>Les seules données collectées via ce site sont celles saisies volontairement dans le formulaire de contact :</p>
+      <ul>
+        <li>Nom complet</li>
+        <li>Adresse e-mail</li>
+        <li>Type de projet</li>
+        <li>Contenu du message</li>
+      </ul>
+
+      <h4>3. Finalité et base légale</h4>
+      <p>Ces données sont utilisées uniquement pour répondre à votre demande et échanger au sujet de votre projet. Base légale : votre consentement (article 6.1.a du RGPD).</p>
+
+      <h4>4. Durée de conservation</h4>
+      <p><strong>[À compléter — ex. : 3 ans à compter du dernier contact]</strong></p>
+
+      <h4>5. Destinataires et sous-traitants</h4>
+      <p><strong>[À compléter — ex. : hébergeur du site, service de traitement du formulaire de contact, aucun transfert hors UE]</strong></p>
+
+      <h4>6. Cookies</h4>
+      <p><strong>[À compléter — ce site n’utilise aucun cookie de mesure d’audience par défaut. Si vous ajoutez un outil de statistiques, décrivez-le ici et mettez en place un bandeau de consentement.]</strong></p>
+
+      <h4>7. Vos droits</h4>
+      <p>Conformément au RGPD, vous disposez d’un droit d’accès, de rectification, d’effacement, de limitation, d’opposition et de portabilité de vos données. Vous pouvez exercer ces droits en écrivant à <strong>[À compléter — adresse e-mail]</strong>. Vous pouvez également introduire une réclamation auprès de la CNIL (www.cnil.fr).</p>
+
+      <div class="fill">⚠️ Document modèle : complétez chaque mention <strong>[À compléter]</strong> en fonction de votre situation réelle (hébergeur, outil de formulaire, conservation des données) avant la mise en ligne.</div>`
+  }
+};
+const legalModal = document.getElementById("legalModal");
+document.querySelectorAll("[data-legal]").forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    const d = LEGAL[btn.dataset.legal];
+    if(!d) return;
+    document.getElementById("lmTitle").textContent = d.title;
+    document.getElementById("lmBody").innerHTML = d.html;
+    openModal(legalModal);
+  });
+});
+
+/* =======================================================================
+   TOASTS
+   ======================================================================= */
+function toast(msg, duration = 4200){
+  const wrap = document.getElementById("toastWrap");
+  const t = document.createElement("div");
+  t.className = "toast";
+  t.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg><span></span>`;
+  t.querySelector("span").textContent = msg;
+  wrap.appendChild(t);
+  setTimeout(()=>{ t.classList.add("is-out"); setTimeout(()=> t.remove(), 340); }, duration);
+}
+
+/* =======================================================================
+   TARIFS → PRÉ-REMPLISSAGE DU FORMULAIRE
+   ======================================================================= */
+const typeSelect = document.getElementById("projectType");
+function choosePlan(label){
+  if(!typeSelect) return;
+  const opt = [...typeSelect.options].find(o => o.value === label || o.text.trim() === label);
+  typeSelect.value = opt ? opt.value : "Autre / à définir ensemble";
+  document.getElementById("f-type").classList.remove("has-error");
+}
+document.querySelectorAll(".btn-plan").forEach(b=>{
+  b.addEventListener("click", ()=>{
+    choosePlan(b.dataset.plan);
+    document.getElementById("contact").scrollIntoView({behavior:"smooth"});
+    setTimeout(()=>{
+      const n = document.getElementById("name");
+      if(n) n.focus({preventScroll:true});
+      toast(`« ${b.dataset.plan} » pré-sélectionnée dans le formulaire de contact.`);
+    }, 700);
+  });
+});
+document.querySelectorAll("[data-scroll-plan]").forEach(a=>{
+  a.addEventListener("click", ()=> setTimeout(()=> choosePlan(a.dataset.scrollPlan), 650));
+});
+
+/* =======================================================================
+   FORMULAIRE DE CONTACT
+   ======================================================================= */
+const form = document.getElementById("contactForm");
+const formMsg = document.getElementById("formMsg");
+const submitBtn = document.getElementById("submitBtn");
+
+const validators = {
+  "f-name":    () => document.getElementById("name").value.trim().length >= 2,
+  "f-email":   () => /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/.test(document.getElementById("email").value.trim()),
+  "f-type":    () => document.getElementById("projectType").value !== "",
+  "f-message": () => document.getElementById("message").value.trim().length >= 10
+};
+Object.keys(validators).forEach(id=>{
+  const w = document.getElementById(id);
+  const input = w.querySelector("input,select,textarea");
+  input.addEventListener("input", ()=>{ if(validators[id]()) w.classList.remove("has-error"); });
+  input.addEventListener("change", ()=>{ if(validators[id]()) w.classList.remove("has-error"); });
+});
+
+function showSuccess(text){
+  formMsg.className = "form__msg is-shown";
+  formMsg.innerHTML = "✅ " + text;
+  toast("Demande transmise avec succès.");
+}
+
+form.addEventListener("submit", async (e)=>{
+  e.preventDefault();
+  let ok = true, firstBad = null;
+  Object.keys(validators).forEach(id=>{
+    const w = document.getElementById(id);
+    const valid = validators[id]();
+    w.classList.toggle("has-error", !valid);
+    if(!valid){ ok = false; if(!firstBad) firstBad = w.querySelector("input,select,textarea"); }
+  });
+  if(!ok){
+    formMsg.classList.remove("is-shown");
+    if(firstBad) firstBad.focus();
+    toast("Merci de compléter correctement les champs obligatoires.");
+    return;
+  }
+
+  const data = {
+    name: document.getElementById("name").value.trim(),
+    email: document.getElementById("email").value.trim(),
+    projectType: document.getElementById("projectType").value,
+    message: document.getElementById("message").value.trim()
+  };
+
+  submitBtn.disabled = true;
+  const original = submitBtn.innerHTML;
+  submitBtn.innerHTML = "Envoi en cours…";
+
+  /* CAS 1 — un service d'envoi est configuré */
+  if(CONFIG.formEndpoint){
+    try{
+      const fd = new FormData();
+      Object.keys(data).forEach(k => fd.append(k, data[k]));
+      const res = await fetch(CONFIG.formEndpoint, {method:"POST", body:fd, headers:{"Accept":"application/json"}});
+      if(res.ok){
+        showSuccess("Merci " + data.name.split(" ")[0] + " ! Votre demande a bien été envoyée. Je reviens vers vous rapidement.");
+        form.reset();
+      } else { throw new Error("bad response"); }
+    }catch(err){
+      submitBtn.disabled = false; submitBtn.innerHTML = original;
+      formMsg.className = "form__msg is-shown";
+      formMsg.innerHTML = "L’envoi automatique a échoué. Vérifiez la valeur de <code>CONFIG.formEndpoint</code>, ou écrivez directement à <strong>" + (CONFIG.email || "votre adresse e-mail") + "</strong>.";
+    }
+    return;
+  }
+
+  /* CAS 2 — aucun service configuré */
+  setTimeout(()=>{
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = original;
+    if(CONFIG.email){
+      const subject = encodeURIComponent("Nouveau projet web — " + data.projectType);
+      const body = encodeURIComponent(
+        "Nom : " + data.name + "\nE-mail : " + data.email +
+        "\nType de projet : " + data.projectType + "\n\nMessage :\n" + data.message
+      );
+      window.location.href = "mailto:" + CONFIG.email + "?subject=" + subject + "&body=" + body;
+      showSuccess("Votre demande est prête : votre logiciel de messagerie va s’ouvrir pour l’envoyer à " + CONFIG.email + ".");
+    } else {
+      formMsg.className = "form__msg is-shown";
+      formMsg.innerHTML =
+        "✅ <strong>Demande enregistrée localement.</strong> Aucun service d’envoi n’est encore configuré : " +
+        "renseignez <code>CONFIG.email</code> (ouverture du logiciel de messagerie) ou <code>CONFIG.formEndpoint</code> " +
+        "(envoi automatique via Formspree, Web3Forms, Getform, Netlify Forms ou EmailJS) pour recevoir les messages.";
+      toast("Formulaire fonctionnel — pensez à configurer CONFIG.email ou CONFIG.formEndpoint.");
+    }
+  }, 700);
+});
+
+/* =======================================================================
+   ANCRES + OFFSET NAVIGATION FIXE
+   ======================================================================= */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener("click", function(e){
+    const href = this.getAttribute("href");
+    if(href === "#" || href.length < 2) return;
+    const target = document.querySelector(href);
+    if(!target) return;
+    e.preventDefault();
+    if(mobileMenu.classList.contains("is-open")) setMenu(false);
+    const offset = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--nav-h")) || 74;
+    const top = target.getBoundingClientRect().top + window.scrollY - (target.id === "accueil" ? 0 : offset - 1);
+    window.scrollTo({top, behavior: reduceMotion ? "auto" : "smooth"});
+    history.replaceState(null, "", href);
+  });
+});
+</script>
+
+<!--
+===========================================================================
+  📋 GUIDE RAPIDE — PERSONNALISATION & MISE EN LIGNE
+===========================================================================
+
+  A. CE QU'IL FAUT MODIFIER (4 endroits seulement)
+  ------------------------------------------------
+  1. CONFIG (haut du <script>) : name, initials, email, instagram,
+     instagramLabel, formEndpoint.
+  2. Les textes « Yans » et « YA » dans la <header> et le <footer>
+     (recherche/remplacement global sur "Yans").
+  3. La constante PROJECTS : remplacez les projets de démonstration par vos
+     vrais projets. Pour chacun : title, catLabel, badge, short, description,
+     features[], et surtout  url:"https://..."  +  demo:false
+     → le badge « Démo » disparaît, l'étiquette passe à « En ligne » et le
+       bouton « Ouvrir le site » de la modale devient actif automatiquement.
+     Pour ajouter une carte : copiez un bloc et changez l'`id` (unique).
+     Pour ajouter une image réelle à la place du visuel abstrait, remplacez
+     `${COVERS[p.cover](p.id)}` par
+     `<img src="images/mon-projet.jpg" alt="Aperçu du site …" loading="lazy">`
+     dans le template du portfolio (le CSS .project__media img {width:100%;
+     height:100%;object-fit:cover} peut être ajouté).
+  4. Les tarifs : chaque carte est encadrée par « ===== OFFRE X ===== ».
+     Le prix est découpé en 3 balises :
+       <span class="cur">€</span><span class="val">24</span><span class="dec">,99</span>
+     Mettez aussi à jour les <option> du formulaire de contact, les attributs
+     data-plan des boutons et les liens data-scroll-plan du pied de page.
+  5. Témoignages : remplacez les 3 blocs « Emplacement pour un avis client »
+     par de vrais avis (texte + prénom + activité + note) après accord écrit.
+  6. Mentions légales / confidentialité : complétez les constantes LEGAL en
+     bas du script (tous les [À compléter]).
+
+  B. CONNECTER LE FORMULAIRE DE CONTACT
+  -------------------------------------
+  Option 1 — Formspree (gratuit jusqu'à 50 envois/mois)
+     1. Créez un compte sur https://formspree.io
+     2. Créez un formulaire, copiez l'URL (https://formspree.io/f/xxxxxxxx)
+     3. Collez-la dans CONFIG.formEndpoint → terminé.
+
+  Option 2 — Web3Forms (gratuit, illimité)
+     1. https://web3forms.com → obtenez une access_key
+     2. CONFIG.formEndpoint = "https://api.web3forms.com/submit"
+     3. Ajoutez dans le <form> :
+        <input type="hidden" name="access_key" value="VOTRE_CLE">
+
+  Option 3 — Netlify Forms (si hébergement Netlify)
+     1. Sur la balise <form> : netlify data-netlify="true" name="contact"
+     2. Les envois apparaissent dans le tableau de bord Netlify.
+
+  Option 4 — Aucun service
+     Renseignez CONFIG.email : le formulaire ouvrira le logiciel de messagerie
+     du visiteur avec un message pré-rempli.
+
+  C. PUBLIER LE SITE SUR UN DOMAINE PERSONNALISÉ
+  ----------------------------------------------
+  Étape 1 — Acheter un nom de domaine
+     Registrar : OVH, Gandi, Infomaniak, Namecheap, IONOS… (≈ 8 à 15 €/an).
+     Choisissez un .fr ou un .com, court et mémorisable.
+
+  Étape 2 — Héberger gratuitement (idéal pour un site statique)
+     • Netlify  : https://app.netlify.com/drop → glissez-déposez le dossier
+       contenant index.html. En ligne en 30 secondes.
+     • Vercel   : import du dossier ou d'un dépôt GitHub.
+     • Cloudflare Pages : gratuit, très rapide.
+     • GitHub Pages : uploadez index.html, activez Settings → Pages
+       (branche main / dossier racine).
+     Renommez ce fichier en index.html et placez-le à la racine.
+
+  Étape 3 — Relier votre nom de domaine
+     1. Chez l'hébergeur : Domain settings → Add custom domain → votredomaine.fr
+     2. Chez le registrar, ajoutez les enregistrements DNS demandés :
+          Type A      @     → l'IP fournie par l'hébergeur
+          Type CNAME  www   → l'adresse fournie (ex. xxx.netlify.app)
+     3. Attendez la propagation DNS (5 min à 24 h).
+     4. Le certificat HTTPS est généré automatiquement et gratuitement.
+
+  Étape 4 — Vérifications avant l'annonce officielle
+     ☐ Affichage smartphone / tablette / ordinateur
+     ☐ Tous les liens de navigation + boutons « Choisir cette offre »
+     ☐ Filtres du portfolio et ouverture des modales (bouton + Échap)
+     ☐ Prix exacts : 24,99 € / 54,99 € / 99,99 € / 129,99 €
+     ☐ Envoi réel d'un message test via le formulaire
+     ☐ Mentions légales et politique de confidentialité COMPLÉTÉES
+       (obligatoire en France : identité, SIRET, hébergeur, TVA)
+     ☐ Remplacement des projets de démonstration par vos vrais projets
+     ☐ Title, meta description et favicon personnalisés
+
+  D. NOTES TECHNIQUES
+  -------------------
+  • Fichier unique, aucune dépendance obligatoire hormis les polices
+    Fontsource (Space Grotesk + Inter) via CDN. Le site reste lisible sans.
+  • Tous les visuels sont des SVG abstraits générés à la volée : zéro image à
+    télécharger, poids très léger, excellent score de performance.
+  • Accessibilité : lien d'évitement, landmarks ARIA, navigation clavier,
+    focus visible, piège à focus dans les modales, fermeture via Échap,
+    contrastes conformes et respect de prefers-reduced-motion.
+  • Aucun faux avis, aucun faux client, aucune donnée inventée présentée
+    comme réelle : les projets de démonstration et les emplacements vides
+    sont explicitement signalés.
+===========================================================================
+-->
+</body>
+</html>
